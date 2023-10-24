@@ -17,14 +17,15 @@
 //   signOutUserStart,
 // } from '../redux/user/userSlice';
 // import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+
 export default function Profile() {
   //   const fileRef = useRef(null);
-  //   const { currentUser, loading, error } = useSelector((state) => state.user);
+  // const { currentUser } = useSelector((state) => state.user);
   //   const [file, setFile] = useState(undefined);
   //   const [filePerc, setFilePerc] = useState(0);
   //   const [fileUploadError, setFileUploadError] = useState(false);
-  //   const [formData, setFormData] = useState({});
+  // const [formData, setFormData] = useState({});
   //   const [updateSuccess, setUpdateSuccess] = useState(false);
   //   const [showListingsError, setShowListingsError] = useState(false);
   //   const [userListings, setUserListings] = useState([]);
@@ -163,21 +164,27 @@ export default function Profile() {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
+      <form
+        // onSubmit={handleSubmit}
+        className="flex flex-col gap-4"
+      >
+        {/* <input
           onChange={(e) => setFile(e.target.files[0])}
           type="file"
           ref={fileRef}
           hidden
           accept="image/*"
-        />
+        /> */}
         <img
-          onClick={() => fileRef.current.click()}
-          src={formData.avatar || currentUser.avatar}
+          // onClick={() => fileRef.current.click()}
+          // src={
+          // formData.avatar ||
+          // currentUser.avatar
+          // }
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
         />
-        <p className="text-sm self-center">
+        {/* <p className="text-sm self-center">
           {fileUploadError ? (
             <span className="text-red-700">
               Error Image upload (image must be less than 2 mb)
@@ -189,67 +196,75 @@ export default function Profile() {
           ) : (
             ''
           )}
-        </p>
+        </p> */}
         <input
           type="text"
           placeholder="username"
-          defaultValue={currentUser.username}
+          // defaultValue={currentUser.username}
           id="username"
           className="border p-3 rounded-lg"
-          onChange={handleChange}
+          // onChange={handleChange}
         />
         <input
           type="email"
           placeholder="email"
           id="email"
-          defaultValue={currentUser.email}
+          // defaultValue={currentUser.email}
           className="border p-3 rounded-lg"
-          onChange={handleChange}
+          // onChange={handleChange}
         />
         <input
           type="password"
           placeholder="password"
-          onChange={handleChange}
+          // onChange={handleChange}
           id="password"
           className="border p-3 rounded-lg"
         />
         <button
-          disabled={loading}
+          // disabled={loading}
           className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? 'Loading...' : 'Update'}
+          Update
+          {/* {loading ? 'Loading...' : 'Update'} */}
         </button>
-        <Link
+        {/* <Link
           className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
           to={'/create-listing'}
         >
           Create Listing
-        </Link>
+        </Link> */}
       </form>
+
       <div className="flex justify-between mt-5">
         <span
-          onClick={handleDeleteUser}
+          // onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+        <span
+          // onClick={handleSignOut}
+          className="text-red-700 cursor-pointer"
+        >
           Sign out
         </span>
       </div>
 
-      <p className="text-red-700 mt-5">{error ? error : ''}</p>
-      <p className="text-green-700 mt-5">
+      {/* <p className="text-red-700 mt-5">{error ? error : ''}</p> */}
+      {/* <p className="text-green-700 mt-5">
         {updateSuccess ? 'User is updated successfully!' : ''}
-      </p>
-      <button onClick={handleShowListings} className="text-green-700 w-full">
+      </p> */}
+      {/* <button
+        // onClick={handleShowListings}
+        className="text-green-700 w-full"
+      >
         Show Listings
       </button>
       <p className="text-red-700 mt-5">
         {showListingsError ? 'Error showing listings' : ''}
-      </p>
+      </p> */}
 
-      {userListings && userListings.length > 0 && (
+      {/* {userListings && userListings.length > 0 && (
         <div className="flex flex-col gap-4">
           <h1 className="text-center mt-7 text-2xl font-semibold">
             Your Listings
@@ -275,7 +290,7 @@ export default function Profile() {
 
               <div className="flex flex-col item-center">
                 <button
-                  onClick={() => handleListingDelete(listing._id)}
+                  // onClick={() => handleListingDelete(listing._id)}
                   className="text-red-700 uppercase"
                 >
                   Delete
@@ -287,7 +302,7 @@ export default function Profile() {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
