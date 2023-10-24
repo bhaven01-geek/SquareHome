@@ -1,24 +1,37 @@
+import './App.css';
+import SignIn from './Auth/SignIn';
+import PropertyDetails from './ListingDesc/HousePage';
+import SignUp from './Auth/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
-import About from './pages/About';
-import Profile from './pages/Profile';
-import Header from './components/Header';
-import CreateListing from './pages/CreateListing';
+import {lazy} from "react";
+import { AuthProvider } from './AuthContext/AuthContext';
+import Footer from './components/Footer/Footer';
+import ListingItem from './components/ListingItem/ListingItem';
+import Home from './components/Home/Home';
+import Header from './components/Header/Header';
+import CreateListing from './components/CreateListings/CreateListings';
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/sign-in" element={<SignIn />}></Route>
-        <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/create-listing" element={<CreateListing />}></Route>
-      </Routes>
-    </BrowserRouter>
-  );
+function App(){
+
+return(
+  <>
+  <BrowserRouter>
+  <AuthProvider>
+  <Header />
+  <Routes>
+    <Route exact path="/" element={<Home/>}/>
+    <Route exact path = '/property' element={<PropertyDetails/>}/>
+    <Route exact path = '/login' element={<SignIn/>}/>
+    <Route exact path = '/signup' element={<SignUp/>}/>
+    {/* <Route exact path = '/footer' element={<Footer/>} /> */}
+    <Route exact path = '/Listings' element= {<ListingItem/>} />
+    <Route exact path = '/create' element= {<CreateListing/>} />
+  </Routes>
+  </AuthProvider>
+  </BrowserRouter>
+  </>
+)
+
 }
+
+export default App;
