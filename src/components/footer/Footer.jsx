@@ -11,7 +11,8 @@ export default function Footer() {
     <div className="footer-brand">
 
       <a href="#" className="logo">
-      <i class="fa-thin fa-house-building"></i>
+      <i class="fa-solid fa-building-user"></i>
+      <b>Company Name</b>
       </a>
 
       <p className="section-text">

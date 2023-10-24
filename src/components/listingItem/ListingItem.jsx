@@ -61,10 +61,11 @@ export default function ListingItem() {
                   <ul className="card-list">
                     <li className="card-item">
                       <strong>3</strong>
-
+                      
                       <ion-icon name="bed-outline"></ion-icon>
 
                       <span>Bedrooms</span>
+                      
                     </li>
 
                     <li className="card-item">
