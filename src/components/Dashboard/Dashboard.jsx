@@ -1,10 +1,10 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-// import service2 from '../../assets/images/service-3.png';
+import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import Home from '../Home/Home';
 import logo3 from '../../assets/images/bluelogo3.png';
+import About from '../Home/About';
 
 const user = {
   name: 'Tom Cook',
@@ -13,12 +13,11 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Add Property', href: '/create', current: false },
-  { name: 'Browse Properties', href: '/Listings', current: false },
-  { name: 'Calculate EMI', href: '/emi', current: false },
-  { name: 'About', href: '/emi', current: false },  
-  // need to update this 'about' to "About Us section" in home page
+  { name: 'Home', href: '/', path: '/' },
+  { name: 'Add Property', href: '/create', path: '/create' },
+  { name: 'Browse Properties', href: '/Listings', path: '/Listings' },
+  { name: 'Calculate EMI', href: '/emi', path: '/emi' },
+  { name: 'About', href: '/about', current: '/about' },
 ];
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
@@ -30,9 +29,11 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  const location = useLocation();
+
   return (
     <>
-      <div >
+      <div>
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -40,39 +41,38 @@ export default function Example() {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <Link to="/">
-                      <div className='flex items-center'>  
-                      <div className="flex-shrink-0">
-                      <img
-                        className="h-12 w-12"
-                        src={logo3}
-                        alt="Your Company"
-                      />
-                    </div>                    
-                      <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-                        {' '}
-                        {/* flex-wrap is used to wrap the text in mobile view */}
-                        {/* make FaHome bigger */}
-                        <span className="text-orange-400"> Square</span>
-                        <span className="text-orange-600">Home</span>
-                      </h1>
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-12 w-12"
+                            src={logo3}
+                            alt="Your Company"
+                          />
+                        </div>
+                        <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+                          {' '}
+                          {/* flex-wrap is used to wrap the text in mobile view */}
+                          {/* make FaHome bigger */}
+                          <span className="text-orange-400"> Square</span>
+                          <span className="text-orange-600">Home</span>
+                        </h1>
                       </div>
                     </Link>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
-                            href={item.href}
+                            to={item.href}
                             className={classNames(
-                              item.current
+                              item.path === location.pathname // Compare the 'path' with the current route
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
-                            aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -216,9 +216,10 @@ export default function Example() {
         </Disclosure>
 
         <main>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-            </Routes>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/about" element={<About />} />
+          </Routes>
         </main>
       </div>
     </>

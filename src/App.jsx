@@ -1,6 +1,5 @@
-import './App.css';
 import SignIn from './Auth/SignIn';
-import PropertyDetails from './ListingDesc/HousePage';
+// import PropertyDetails from './ListingDesc/HousePage';
 import SignUp from './Auth/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './AuthContext/AuthContext';
