@@ -1,23 +1,24 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper/modules';
 // import SwiperCore from 'swiper';
 // import 'swiper/css/bundle';
 // import ListingItem from '../components/ListingItem';
-import myImage1 from "../../assets/images/about-banner-1.png";
-import myImage2 from "../../assets/images/about-banner-2.jpg";
-import service1 from "../../assets/images/service-1.png";
-import service2 from "../../assets/images/service-3.png";
+import myImage1 from '../../assets/images/about-banner-1.png';
+import myImage2 from '../../assets/images/about-banner-2.jpg';
+import service1 from '../../assets/images/service-1.png';
+import service2 from '../../assets/images/service-3.png';
+import Footer from '../Footer/Footer';
 
-import "./styles.css";
+import './styles.css';
 import {
   FaLeaf,
   FaHome,
   FaWineGlass,
   FaHeart,
   FaArrowRight,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -28,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?offer=true&limit=4");
+        const res = await fetch('/api/listing/get?offer=true&limit=4');
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -38,7 +39,7 @@ export default function Home() {
     };
     const fetchRentListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?type=rent&limit=4");
+        const res = await fetch('/api/listing/get?type=rent&limit=4');
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -49,7 +50,7 @@ export default function Home() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?type=sale&limit=4");
+        const res = await fetch('/api/listing/get?type=sale&limit=4');
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -73,10 +74,10 @@ export default function Home() {
           <br />
           We have a wide range of properties for you to choose from.
         </div>
-        <Link to={"/search"}>
+        <Link to={'/search'}>
           <button className="text-xs sm:text-sm font-bold hover:underline bg-orange-600 hover:bg-green-900 text-white py-2 px-4 rounded ">
             Your New Home Awaits - Let's Begin!
-          </button>{" "}
+          </button>{' '}
         </Link>
       </div>
 
@@ -212,7 +213,7 @@ export default function Home() {
               </h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
-                to={"/search?offer=true"}
+                to={'/search?offer=true'}
               >
                 Show more offers
               </Link>
@@ -232,7 +233,7 @@ export default function Home() {
               </h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
-                to={"/search?type=rent"}
+                to={'/search?type=rent'}
               >
                 Show more places for rent
               </Link>
@@ -252,7 +253,7 @@ export default function Home() {
               </h2>
               <Link
                 className="text-sm text-blue-800 hover:underline"
-                to={"/search?type=sale"}
+                to={'/search?type=sale'}
               >
                 Show more places for sale
               </Link>
@@ -265,6 +266,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
