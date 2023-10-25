@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // } from '../redux/user/userSlice';
 // import OAuth from '../components/OAuth';
 
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from '../AuthContext/AuthContext';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -16,7 +16,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   // const dispatch = useDispatch();
 
-  const {login} = useAuth();
+  const { login } = useAuth();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,12 +24,9 @@ export default function SignIn() {
     });
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
       const email = formData.email;
       const password = formData.password;
       const data = await login(email, password);
@@ -41,18 +38,14 @@ export default function SignIn() {
       navigate('/');
     } catch (error) {
       // dispatch(signInFailure(error.message));
-      console.log(error)
+      console.log(error);
     }
   };
-
 
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="email"
           placeholder="email"
@@ -70,7 +63,7 @@ export default function SignIn() {
 
         <button
           // disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 "
+          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 text-center"
         >
           {/* {loading ? 'Loading...' : 'Sign In'} */}
           Sign In
@@ -82,11 +75,15 @@ export default function SignIn() {
           <hr class="border-gray-500" />
         </div>
 
-        <button class="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 ">
-          <img height="50" width="50" src = "https://www.outsystems.com/forge/DownloadResource.aspx?FileName=&ImageBinaryId=43951" alt="google btn" />
-          <span class = "ml-4">Login with Google</span>
+        <button class="bg-blue-400 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
+          <img
+            height="50"
+            width="50"
+            src="https://www.outsystems.com/forge/DownloadResource.aspx?FileName=&ImageBinaryId=43951"
+            alt="google btn"
+          />
+          <span class="ml-4">Login with Google</span>
         </button>
-
       </form>
       <div className="flex gap-2 mt-5">
         <p>Dont have an account?</p>
