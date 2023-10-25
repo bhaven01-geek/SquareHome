@@ -70,12 +70,12 @@ export default function Home() {
           with us
         </h1>
         <div className="text-gray-400 text-xs sm:text-sm">
-          Square Home property portal is the best place to find your next perfect place to
-          live.
+          Square Home property portal is the best place to find your next
+          perfect place to live.
           <br />
           We have a wide range of properties for you to choose from.
         </div>
-        <Link to={'/search'}>
+        <Link to={'/Listings'}>
           <button className="text-xs sm:text-sm font-bold hover:underline bg-orange-600 hover:bg-green-900 text-white py-2 px-4 rounded ">
             Your New Home Awaits - Let's Begin!
           </button>{' '}
@@ -209,9 +209,8 @@ export default function Home() {
                 </h3>
                 <p className="card-text">
                   "Empower yourself with knowledge and make well-informed
-                  decisions about your dream home with our EMI calculator.
-                  .{" "}
-                </p>{" "}
+                  decisions about your dream home with our EMI calculator. .{' '}
+                </p>{' '}
                 <a href="#" className="card-link">
                   <span>Budget your way</span>
                   <FaArrowRight />
