@@ -12,11 +12,12 @@ export default function Footer() {
 
       <a href="#" className="logo">
       <i class="fa-solid fa-building-user"></i>
-      <b>Company Name</b>
+      <b>Square Home</b>
       </a>
 
       <p className="section-text">
-        Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.
+        Square Home is the best place to find your next perfect place to live.
+        We have a wide range of properties for you to choose from.
       </p>
 
       <ul className="contact-list">
@@ -25,7 +26,7 @@ export default function Footer() {
           <a href="#" className="contact-link">
             <ion-icon name="location-outline"></ion-icon>
 
-            <address>Brooklyn, New York, United States</address>
+            <address>West Malad, Mumbai, India</address>
           </a>
         </li>
 
@@ -41,7 +42,7 @@ export default function Footer() {
           <a href="mailto:contact@homeverse.com" className="contact-link">
             <ion-icon name="mail-outline"></ion-icon>
 
-            <span>contact@homeverse.com</span>
+            <span>contact@squarehome.com</span>
           </a>
         </li>
 
@@ -188,7 +189,7 @@ export default function Footer() {
   <div className="container">
 
     <p className="copyright">
-      &copy; 2022 <a href="#">codewithsadee</a>. All Rights Reserved
+      &copy; 2023 <a href="#">Square Home</a>. All Rights Reserved
     </p>
 
   </div>

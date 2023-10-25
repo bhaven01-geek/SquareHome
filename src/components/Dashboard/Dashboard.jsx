@@ -28,7 +28,7 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <>
-      <div className="min-h-full">
+      <div >
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -47,8 +47,8 @@ export default function Example() {
                         {' '}
                         {/* flex-wrap is used to wrap the text in mobile view */}
                         {/* make FaHome bigger */}
-                        <span className="text-orange-400"> Property</span>
-                        <span className="text-orange-700">Portal</span>
+                        <span className="text-orange-400"> Square</span>
+                        <span className="text-orange-700">Home</span>
                       </h1>
                     </Link>
                     <div className="hidden md:block">
@@ -210,11 +210,9 @@ export default function Example() {
         </Disclosure>
 
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
             </Routes>
-          </div>
         </main>
       </div>
     </>
