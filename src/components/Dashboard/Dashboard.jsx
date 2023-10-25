@@ -2,8 +2,9 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import service2 from '../../assets/images/service-3.png';
+// import service2 from '../../assets/images/service-3.png';
 import Home from '../Home/Home';
+import logo3 from '../../assets/images/bluelogo3.png';
 
 const user = {
   name: 'Tom Cook',
@@ -14,7 +15,10 @@ const user = {
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Add Property', href: '/create', current: false },
-  { name: 'Properties', href: '/Listings', current: false },
+  { name: 'Browse Properties', href: '/Listings', current: false },
+  { name: 'Calculate EMI', href: '/emi', current: false },
+  { name: 'About', href: '/emi', current: false },  
+  // need to update this 'about' to "About Us section" in home page
 ];
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
@@ -35,21 +39,23 @@ export default function Example() {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
+                    <Link to="/">
+                      <div className='flex items-center'>  
+                      <div className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src={service2}
+                        className="h-12 w-12"
+                        src={logo3}
                         alt="Your Company"
                       />
-                    </div>
-                    <Link to="/">
+                    </div>                    
                       <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
                         {' '}
                         {/* flex-wrap is used to wrap the text in mobile view */}
                         {/* make FaHome bigger */}
                         <span className="text-orange-400"> Square</span>
-                        <span className="text-orange-700">Home</span>
+                        <span className="text-orange-600">Home</span>
                       </h1>
+                      </div>
                     </Link>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">

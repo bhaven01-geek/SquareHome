@@ -9,6 +9,7 @@ import myImage1 from '../../assets/images/about-banner-1.png';
 import myImage2 from '../../assets/images/about-banner-2.jpg';
 import service1 from '../../assets/images/service-1.png';
 import service2 from '../../assets/images/service-3.png';
+import service3 from '../../assets/images/service-2.png';
 import Footer from '../Footer/Footer';
 
 import './styles.css';
@@ -69,7 +70,7 @@ export default function Home() {
           with us
         </h1>
         <div className="text-gray-400 text-xs sm:text-sm">
-          Property portal is the best place to find your next perfect place to
+          Square Home property portal is the best place to find your next perfect place to
           live.
           <br />
           We have a wide range of properties for you to choose from.
@@ -194,6 +195,25 @@ export default function Home() {
                 </p>
                 <a href="#" className="card-link">
                   <span>Sell A Home</span>
+                  <FaArrowRight />
+                </a>
+              </div>
+            </li>
+            <li>
+              <div className="service-card">
+                <div className="card-icon">
+                  <img src={service3} alt="Service icon" />
+                </div>
+                <h3 className="h3 card-title">
+                  <a href="#">EMI Calculator</a>
+                </h3>
+                <p className="card-text">
+                  "Empower yourself with knowledge and make well-informed
+                  decisions about your dream home with our EMI calculator.
+                  .{" "}
+                </p>{" "}
+                <a href="#" className="card-link">
+                  <span>Budget your way</span>
                   <FaArrowRight />
                 </a>
               </div>

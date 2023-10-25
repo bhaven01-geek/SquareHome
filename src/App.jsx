@@ -8,6 +8,7 @@ import ListingItem from './components/ListingItem/ListingItem';
 import CreateListing from './components/CreateListings/CreateListings';
 import Profile from './components/Profile/Profile';
 import Dashboard from './components/Dashboard/Dashboard';
+import EmiCalc from './components/Home/EmiCalc';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/Listings" element={<ListingItem />} />
             <Route exact path="/create" element={<CreateListing />} />
+            <Route exact path="/emi" element={<EmiCalc />} />
           </Routes>
           {/* <Footer /> */}
         </AuthProvider>
