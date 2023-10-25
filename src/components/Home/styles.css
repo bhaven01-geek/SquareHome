@@ -23,8 +23,8 @@
      * typography
      */
 
-  --ff-nunito-sans: "Nunito Sans", sans-serif;
-  --ff-poppins: "Poppins", sans-serif;
+  --ff-nunito-sans: 'Nunito Sans', sans-serif;
+  --ff-poppins: 'Poppins', sans-serif;
 
   --fs-1: 1.875rem;
   --fs-2: 1.5rem;
@@ -184,7 +184,7 @@ a {
 }
 
 .btn::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -416,7 +416,7 @@ a {
 }
 
 .service-card::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
