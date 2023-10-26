@@ -5,21 +5,12 @@ import { Link } from 'react-router-dom';
 // import SwiperCore from 'swiper';
 // import 'swiper/css/bundle';
 // import ListingItem from '../components/ListingItem';
-import myImage1 from '../../assets/images/about-banner-1.png';
-import myImage2 from '../../assets/images/about-banner-2.jpg';
-import service1 from '../../assets/images/service-1.png';
-import service2 from '../../assets/images/service-3.png';
-import service3 from '../../assets/images/service-2.png';
 import Footer from '../Footer/Footer';
+import About from './About';
+import Services from './Services';
 
 import './styles.css';
-import {
-  FaLeaf,
-  FaHome,
-  FaWineGlass,
-  FaHeart,
-  FaArrowRight,
-} from 'react-icons/fa';
+
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -100,126 +91,14 @@ export default function Home() {
           ))}
       </Swiper> */}
 
-      <div className="flex flex-row gap-6 p-28 px-3 max-w-6xl mx-auto my-10">
-        <section className="about" id="about">
-          <div className="container">
-            <figure className="about-banner">
-              <img src={myImage1} alt="House interior" />
-              <img src={myImage2} alt="House interior" className="abs-img" />
-            </figure>
+      {/* about us */}
 
-            <div className="about-content">
-              <p className="section-subtitle">About Us</p>
-              <h2 className="h2 section-title">
-                The Leading Real Estate Rental Marketplace.
-              </h2>
-
-              <p className="about-text">
-                Over 40,000 people work for us in more than 70 countries all
-                over the world.
-              </p>
-
-              <ul className="about-list">
-                <li className="about-item">
-                  <div className="about-item-icon">
-                    <FaHome className="text-orange-500" />
-                  </div>
-                  <p className="about-item-text">Smart Home Design</p>
-                </li>
-                <li className="about-item">
-                  <div className="about-item-icon">
-                    <FaLeaf className="text-green-600" />
-                  </div>
-                  <p className="about-item-text">Beautiful Scene Around</p>
-                </li>
-                <li className="about-item">
-                  <div className="about-item-icon">
-                    <FaWineGlass className="text-orange-500" />
-                  </div>
-                  <p className="about-item-text">Exceptional Lifestyle</p>
-                </li>
-                <li className="about-item">
-                  <div className="about-item-icon">
-                    <FaHeart className="text-red-500" />
-                  </div>
-                  <p className="about-item-text">Complete 24/7 Security</p>
-                </li>
-              </ul>
-
-              <p className="callout">"Unlock the Door to Your Future Home."</p>
-
-              <a href="#service" className="btn">
-                Our Services
-              </a>
-            </div>
-          </div>
-        </section>
-      </div>
-
+      <About/>
+      
       {/* our services */}
-      <section className="service" id="service">
-        <div className="container">
-          <p className="section-subtitle">Our Services</p>
-          <h2 className="h2 section-title">Our Main Focus</h2>
-          <ul className="service-list">
-            <li>
-              <div className="service-card">
-                <div className="card-icon">
-                  <img src={service1} alt="Service icon" />
-                </div>
-                <h3 className="h3 card-title">
-                  <a href="#">Buy a home</a>
-                </h3>
-                <p className="card-text">
-                  over 1 million+ homes for sale available on the website, we
-                  can match you with a house you will want to call home.
-                </p>
-                <a href="#" className="card-link">
-                  <span>Find A Home</span>
-                  <FaArrowRight />
-                </a>
-              </div>
-            </li>
-            <li>
-              <div className="service-card">
-                <div className="card-icon">
-                  <img src={service2} alt="Service icon" />
-                </div>
-                <h3 className="h3 card-title">
-                  <a href="#">Sell a home</a>
-                </h3>
-                <p className="card-text">
-                  With our expert guidance, your property can find its perfect
-                  match. List your home with us and experience a seamless
-                  selling process.
-                </p>
-                <a href="#" className="card-link">
-                  <span>Sell A Home</span>
-                  <FaArrowRight />
-                </a>
-              </div>
-            </li>
-            <li>
-              <div className="service-card">
-                <div className="card-icon">
-                  <img src={service3} alt="Service icon" />
-                </div>
-                <h3 className="h3 card-title">
-                  <a href="#">EMI Calculator</a>
-                </h3>
-                <p className="card-text">
-                  "Empower yourself with knowledge and make well-informed
-                  decisions about your dream home with our EMI calculator. .{' '}
-                </p>{' '}
-                <a href="#" className="card-link">
-                  <span>Budget your way</span>
-                  <FaArrowRight />
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
+      
+      <Services/>
+      
 
       {/* listing results for offer, sale and rent */}
 
