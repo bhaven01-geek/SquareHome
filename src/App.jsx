@@ -23,6 +23,7 @@ function App() {
             <Route exact path="/Listings" element={<ListingItem />} />
             <Route exact path="/create" element={<CreateListing />} />
             <Route exact path="/emi" element={<EmiCalc />} />
+            <Route exact path="/property/:id" element={<PropertyDetails />} />
           </Routes>
           {/* <Footer /> */}
         </AuthProvider>

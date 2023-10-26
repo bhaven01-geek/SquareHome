@@ -1,7 +1,7 @@
 // import { housesData } from './data';
 // import { useParams } from 'react-router-dom';
 import { BiBed, BiBath, BiArea } from 'react-icons/bi';
-
+import { Carousel } from "@material-tailwind/react";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -71,11 +71,24 @@ const PropertyDetails = () => {
       </div>
       <div className="flex flex-col items-start gap-8 lg:flex-row">
         <div className="max-w-[768px]">
-          <div className="mb-8">
+          <div className="mb-8 h-[520px]">
+            <Carousel className="rounded-xl">
             <img
-              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6"
-              alt=""
+              src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+              alt="image 1"
+              className="h-full w-full object-cover"
             />
+            <img
+              src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+              alt="image 2"
+              className="h-full w-full object-cover"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+              alt="image 3"
+              className="h-full w-full object-cover"
+            />
+            </Carousel>
           </div>
           <div className="flex gap-x-8 text-orange-600 mb-6">
             <div className="flex gap-x-2 items-center">
