@@ -316,6 +316,7 @@ a {
 }
 
 .social-list {
+    margin-left: 10px;
     display: flex;
     align-items: center;
     gap: 20px;
