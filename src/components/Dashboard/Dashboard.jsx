@@ -5,6 +5,7 @@ import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import Home from '../Home/Home';
 import logo3 from '../../assets/images/bluelogo3.png';
 import About from '../Home/About';
+import {Link as ScrollLink} from 'react-scroll';
 
 const user = {
   name: 'Tom Cook',
@@ -17,8 +18,15 @@ const navigation = [
   { name: 'Add Property', href: '/create', path: '/create' },
   { name: 'Browse Properties', href: '/Listings', path: '/Listings' },
   { name: 'Calculate EMI', href: '/emi', path: '/emi' },
-  { name: 'About', href: '/about', current: '/about' },
+  // { name: 'About', href: '/about', current: '/about' },
+  { name: (
+    <ScrollLink to="about" smooth={true} duration={100} >
+      About
+    </ScrollLink>
+  ),
+  path: '/about',}, 
 ];
+
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
   { name: 'Sign out', href: '/login' },
