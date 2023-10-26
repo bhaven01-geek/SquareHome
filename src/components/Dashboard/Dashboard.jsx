@@ -1,11 +1,9 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Route, Link, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes, Outlet, useLocation } from 'react-router-dom';
+import service2 from '../../assets/images/service-3.png';
 import Home from '../Home/Home';
-import logo3 from '../../assets/images/bluelogo3.png';
-import About from '../Home/About';
-import {Link as ScrollLink} from 'react-scroll';
 
 const user = {
   name: 'Tom Cook',
@@ -13,20 +11,12 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
-const navigation = [
-  { name: 'Home', href: '/', path: '/' },
-  { name: 'Add Property', href: '/create', path: '/create' },
-  { name: 'Browse Properties', href: '/Listings', path: '/Listings' },
-  { name: 'Calculate EMI', href: '/emi', path: '/emi' },
-  // { name: 'About', href: '/about', current: '/about' },
-  { name: (
-    <ScrollLink to="about" smooth={true} duration={100} >
-      About
-    </ScrollLink>
-  ),
-  path: '/about',}, 
-];
 
+
+const navigation = [
+  { name: 'Add Property', href: '/app/create', current: true },
+  { name: 'Properties', href: '/app/show', current: false },
+];
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
   { name: 'Sign out', href: '/login' },
@@ -36,51 +26,50 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Dashboard() {
   const location = useLocation();
-
   return (
     <>
-      <div>
+      <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8"
+                        src={service2}
+                        alt="Your Company"
+                      />
+                    </div>
                     <Link to="/">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <img
-                            className="h-12 w-12"
-                            src={logo3}
-                            alt="Your Company"
-                          />
-                        </div>
-                        <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-                          {' '}
-                          {/* flex-wrap is used to wrap the text in mobile view */}
-                          {/* make FaHome bigger */}
-                          <span className="text-orange-400"> Square</span>
-                          <span className="text-orange-600">Home</span>
-                        </h1>
-                      </div>
+                      <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+                        {' '}
+                        {/* flex-wrap is used to wrap the text in mobile view */}
+                        {/* make FaHome bigger */}
+                        <span className="text-orange-400"> Property</span>
+                        <span className="text-orange-700">Portal</span>
+                      </h1>
                     </Link>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
+
                         {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.href}
-                            className={classNames(
-                              item.path === location.pathname // Compare the 'path' with the current route
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'rounded-md px-3 py-2 text-sm font-medium'
-                            )}
-                          >
-                            {item.name}
-                          </Link>
+                          <li key={item.to}>
+                            <Link
+                              to={item.href}
+                              className={classNames(
+                                location.pathname === item.href
+                                  ? 'bg-gray-900 text-white'
+                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
                         ))}
                       </div>
                     </div>
@@ -163,20 +152,23 @@ export default function Example() {
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block rounded-md px-3 py-2 text-base font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
+                    <Link to={'/signup'}>
+
+                      <Disclosure.Button
+                        key={item.name}
+                        as="a"
+                        href={item.href}
+                        className={classNames(
+                          item.current
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'block rounded-md px-3 py-2 text-base font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    </Link>
                   ))}
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
@@ -224,10 +216,9 @@ export default function Example() {
         </Disclosure>
 
         <main>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/about" element={<About />} />
-          </Routes>
+          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <Outlet />
+          </div>
         </main>
       </div>
     </>
