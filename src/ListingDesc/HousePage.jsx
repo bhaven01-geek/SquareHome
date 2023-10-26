@@ -1,5 +1,5 @@
 // import { housesData } from './data';
-// import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { BiBed, BiBath, BiArea } from 'react-icons/bi';
 import { Carousel } from "@material-tailwind/react";
 import { useRef, useState } from 'react';
@@ -9,6 +9,9 @@ import emailjs from '@emailjs/browser';
 
 const PropertyDetails = () => {
   const form = useRef();
+  const location = useLocation();
+  const { property } = location.state;
+  console.log(property);
   // const [submissionStatus, setSubmissionStatus] = useState(null);
   const [notification, setNotification] = useState(null);
   const [formData, setFormData] = useState({
@@ -68,25 +71,6 @@ const PropertyDetails = () => {
   //     return house.id === parseInt(id);
   //   });
 
-  const property = {
-    id: 1,
-    type: 'House',
-    name: 'House1',
-    description:
-      "AX CAPITAL Real Estate is offering to the market a spacious 3-Bedroom + Maid in Bluewaters 6. Offering breathtaking views. , this fully furnished property boasts 3 bedrooms, 1 maid's room, and 5 bathrooms within its expansive 2,101.12 sqft. It also includes the convenience of 2 covered parking spaces. Property Highlights - 3 Bedrooms - Maid Room (With External Door). - 4 Bathrooms - L Shape Balcony with Ain Dubai and Full Sea View. - Corner Unit - Size: 2101.12 sqft. - High Floor - Luxury Fully Furnished. - Open Kitchen - 2 Parking Spaces - 1 or 2 cheques. - Reference number: axc[redacted phone number] - Agent: Dren Sefa - [redacted phone number] Alternatively, visit our website where you will find an extensive selection of properties available for sale and rent. Ask us about: - Off-Plan - Property Management - Interior Design (Ax Design) - Exclusive Off-Plan - Short Term Let",
-    country: 'United States',
-    address: '7240C Argyle St. Lawndale, CA 90260',
-    bedrooms: '6',
-    bathrooms: '3',
-    surface: '4200 sq ft',
-    year: '2016',
-    price: '110000',
-    agent: {
-      name: 'Patricia Tullert',
-      phone: '0123 456 78910',
-      email: 'ishikaagarwal22318@gmail.com',
-    },
-  };
 
   return (
     <div className="container mx-auto min-h-[800px] mb-14">
@@ -97,10 +81,10 @@ const PropertyDetails = () => {
         </div>
         <div className="mb-4 lg:mb-0 flex gap-x-2 text-sm">
           <div className="bg-orange-400 rounded-full text-white px-6 inline-block py-3">
-            {property.type}
+            {property.propertyType}
           </div>
           <div className="bg-orange-600 rounded-full text-white px-6 inline-block py-3">
-            {property.country}
+            {property.address}
           </div>
         </div>
       </div>
@@ -108,21 +92,14 @@ const PropertyDetails = () => {
         <div className="max-w-[768px]">
           <div className="mb-8 h-[520px]">
             <Carousel className="rounded-xl">
-            <img
-              src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-              alt="image 1"
-              className="h-full w-full object-cover"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-              alt="image 2"
-              className="h-full w-full object-cover"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-              alt="image 3"
-              className="h-full w-full object-cover"
-            />
+              {property.imageUrls.map((imageUrl, index) => (
+                <img
+                  key={index} // Use a unique key for each image
+                  src={imageUrl}
+                  alt={`image ${index + 1}`}
+                  className="h-full w-full object-cover"
+                />
+              ))}
             </Carousel>
           </div>
           <div className="flex gap-x-8 text-orange-600 mb-6">
@@ -136,7 +113,7 @@ const PropertyDetails = () => {
             </div>
             <div className="flex gap-x-2 items-center">
               <BiArea className="text-2xl" />
-              <div className="text-lg font-medium">{property.surface}</div>
+              <div className="text-lg font-medium">{property.squareFt}</div>
             </div>
             <div className="flex gap-x-2  text-3xl font-semibold text-orange-600">
               $ {property.price}
@@ -151,7 +128,7 @@ const PropertyDetails = () => {
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             ></img>
             <div>
-              <div className="font-bold text-lg">{property.agent.name}</div>
+              <div className="font-bold text-lg">{property.name}</div>
               {/* <Link to="/Listings" className="text-violet-700 text-sm">
                 View listings
               </Link> */}
@@ -165,7 +142,7 @@ const PropertyDetails = () => {
             <input
               type="text"
               placeholder="To: "
-              value={property.agent.email}
+              value="sqaurehouse@gmail.com"
               name="to_name"
             ></input>
             <input
@@ -226,11 +203,10 @@ const PropertyDetails = () => {
             </div>
             {notification && (
               <div
-                className={`notification ${
-                  notification.type === 'success'
-                    ? 'bg-green-600 text-white p-3 rounded-md text-center'
-                    : 'bg-red-400 p-3 rounded-md text-center'
-                }`}
+                className={`notification ${notification.type === 'success'
+                  ? 'bg-green-600 text-white p-3 rounded-md text-center'
+                  : 'bg-red-400 p-3 rounded-md text-center'
+                  }`}
               >
                 {notification.message}
               </div>
