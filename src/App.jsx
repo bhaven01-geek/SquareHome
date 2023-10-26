@@ -1,5 +1,5 @@
 import SignIn from './Auth/SignIn';
-// import PropertyDetails from './ListingDesc/HousePage';
+import PropertyDetails from './ListingDesc/HousePage';
 import SignUp from './Auth/SignUp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './AuthContext/AuthContext';
@@ -16,7 +16,7 @@ function App() {
         <AuthProvider>
           <Dashboard />
           <Routes>
-            {/* <Route exact path="/property" element={<PropertyDetails />} /> */}
+            <Route exact path="/property" element={<PropertyDetails />} />
             <Route exact path="/login" element={<SignIn />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/profile" element={<Profile />} />
