@@ -35,7 +35,7 @@ export default function SignIn() {
         // dispatch(signInFailure(data.message));
         return;
       }
-      navigate('/');
+      navigate("../app/create" , {replace:true});
     } catch (error) {
       // dispatch(signInFailure(error.message));
       console.log(error);
@@ -63,26 +63,26 @@ export default function SignIn() {
 
         <button
           // disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 text-center"
+          className="bg-blue-700 text-white  p-3 rounded-lg uppercase hover:opacity-95 text-center"
         >
           {/* {loading ? 'Loading...' : 'Sign In'} */}
           Sign In
         </button>
         {/* <OAuth /> */}
-        <div className="mt-7 grid grid-cols-3 items-center text-gray-500">
-          <hr className="border-gray-500" />
-          <p className="text-center text-sm">OR</p>
-          <hr className="border-gray-500" />
+        <div class="mt-7 grid grid-cols-3 items-center text-gray-500">
+          <hr class="border-gray-500" />
+          <p class="text-center text-sm">OR</p>
+          <hr class="border-gray-500" />
         </div>
 
-        <button className="bg-blue-400 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
+        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
           <img
             height="50"
             width="50"
             src="https://www.outsystems.com/forge/DownloadResource.aspx?FileName=&ImageBinaryId=43951"
             alt="google btn"
           />
-          <span className="ml-4">Login with Google</span>
+          <span class="ml-4">Login with Google</span>
         </button>
       </form>
       <div className="flex gap-2 mt-5">

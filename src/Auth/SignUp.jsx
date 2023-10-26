@@ -1,11 +1,14 @@
+import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// // import OAuth from '../components/OAuth';
 import { useAuth } from '../AuthContext/AuthContext';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const [setError] = useState(null);
-  const [setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { signup } = useAuth();
   const handleChange = (e) => {
@@ -15,6 +18,36 @@ export default function SignUp() {
     });
     console.log('fj');
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     setLoading(true);
+  //     const res = await fetch('/api/auth/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     const data = await res.json();
+  //     console.log(data);
+  //     if (data.success === false) {
+  //       setLoading(false);
+  //       setError(data.message);
+  //       return;
+  //     }
+  //     setLoading(false);
+  //     setError(null);
+  //     navigate('/sign-in');
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setError(error.message);
+  //   }
+
+  // };
 
   const handleSubmit = async (e) => {
     console.log(formData);
@@ -72,26 +105,28 @@ export default function SignUp() {
         <button
           // disabled={loading}
           onClick={handleSubmit}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 text-center"
+          className="bg-blue-700 text-white  p-3 rounded-lg uppercase hover:opacity-95 text-center"
         >
           {/* {loading ? 'Loading...' : 'Sign Up'} */}
           Sign Up
         </button>
-        <div className="mt-7 grid grid-cols-3 items-center text-gray-500">
-          <hr className="border-gray-500" />
-          <p className="text-center text-sm">OR</p>
-          <hr className="border-gray-500" />
+        <div class="mt-7 grid grid-cols-3 items-center text-gray-500">
+          <hr class="border-gray-500" />
+          <p class="text-center text-sm">OR</p>
+          <hr class="border-gray-500" />
         </div>
 
-        <button className="bg-blue-400 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 ">
+        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
           <img
             height="50"
             width="50"
             src="https://www.outsystems.com/forge/DownloadResource.aspx?FileName=&ImageBinaryId=43951"
             alt="google btn"
           />
-          <span className="ml-4">Login with Google</span>
+          <span class="ml-4">Login with Google</span>
         </button>
+
+        {/* <OAuth /> */}
       </div>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
