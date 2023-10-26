@@ -2,13 +2,21 @@
 // import { useParams } from 'react-router-dom';
 import { BiBed, BiBath, BiArea } from 'react-icons/bi';
 import { Carousel } from "@material-tailwind/react";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 // import { Link } from 'react-router-dom';
 
 const PropertyDetails = () => {
   const form = useRef();
+  // const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [notification, setNotification] = useState(null);
+  const [formData, setFormData] = useState({
+    from_name: '',
+    from_email: '',
+    from_phone: '',
+    message: '',
+  });
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -23,12 +31,38 @@ const PropertyDetails = () => {
       .then(
         (result) => {
           console.log(result.text);
+          // setSubmissionStatus('success'); // Set success status
+          setNotification({
+            type: 'success',
+            message: 'Message sent successfully!',
+          });
+
+          setTimeout(() => {
+            setNotification(null); // Remove the notification after a delay
+          }, 1000); // Adjust the time (in milliseconds) as needed
+
+          setFormData({
+            // Clear the form data
+            from_name: '',
+            from_email: '',
+            from_phone: '',
+            message: '',
+          });
         },
         (error) => {
           console.log(error.text);
+          setNotification({
+            type: 'error',
+            message: 'Message sending failed. Please try again.',
+          });
+
+          setTimeout(() => {
+            setNotification(null); // Remove the notification after a delay
+          }, 1000); // Adjust the time (in milliseconds) as needed
         }
       );
   };
+
   //   const { id } = useParams();
   //   const property = housesData.find((house) => {
   //     return house.id === parseInt(id);
@@ -50,6 +84,7 @@ const PropertyDetails = () => {
     agent: {
       name: 'Patricia Tullert',
       phone: '0123 456 78910',
+      email: 'ishikaagarwal22318@gmail.com',
     },
   };
 
@@ -128,28 +163,58 @@ const PropertyDetails = () => {
             onSubmit={sendEmail}
           >
             <input
+              type="text"
+              placeholder="To: "
+              value={property.agent.email}
+              name="to_name"
+            ></input>
+            <input
               className="border border-gray-300 focus:border-orange-600 text-gray-600 rounded w-full px-4 h-14 text-sm outline-none"
               type="text"
               placeholder="Name*"
               name="from_name"
+              required
+              autoComplete="off"
+              value={formData.from_name}
+              onChange={(e) =>
+                setFormData({ ...formData, from_name: e.target.value })
+              }
             />
             <input
               className="border border-gray-300 focus:border-orange-600 text-gray-600 rounded w-full px-4 h-14 text-sm outline-none"
               type="text"
               placeholder="Email*"
               name="from_email"
+              required
+              autoComplete="off"
+              value={formData.from_email}
+              onChange={(e) =>
+                setFormData({ ...formData, from_email: e.target.value })
+              }
             />
             <input
               className="border border-gray-300 focus:border-orange-600 text-gray-600 rounded w-full px-4 h-14 text-sm outline-none"
               type="text"
               placeholder="Phone*"
               name="from_phone"
+              required
+              autoComplete="off"
+              value={formData.from_phone}
+              onChange={(e) =>
+                setFormData({ ...formData, from_phone: e.target.value })
+              }
             />
             <textarea
               className="border border-gray-300 focus:border-orange-600 rounded w-full p-4 h-36 text-sm text-gray-600 outline-none resize-none"
               type="text"
               placeholder="Message*"
               name="message"
+              required
+              autoComplete="off"
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
             />
             <div className="flex gap-x-2">
               <button
@@ -159,6 +224,17 @@ const PropertyDetails = () => {
                 Send Message
               </button>
             </div>
+            {notification && (
+              <div
+                className={`notification ${
+                  notification.type === 'success'
+                    ? 'bg-green-600 text-white p-3 rounded-md text-center'
+                    : 'bg-red-400 p-3 rounded-md text-center'
+                }`}
+              >
+                {notification.message}
+              </div>
+            )}
           </form>
         </div>
       </div>
