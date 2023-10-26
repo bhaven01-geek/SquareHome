@@ -24,14 +24,14 @@ function Header() {
         }
     }, [location.search]);
     return (
-        <header className='bg-orange-200 shadow-md'> {/*good seo practice to have a header tag */}
+        <header className='bg-orange-300 shadow-md'> {/*good seo practice to have a header tag */}
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
                     <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'> {/* flex-wrap is used to wrap the text in mobile view */}
                         {/* make FaHome bigger */}
                         <FaHome className='text-orange-500' />
-                        <span className='text-orange-400'>Property</span>
-                        <span className='text-orange-700'>Portal</span>
+                        <span className='text-black-400'>Square</span>
+                        <span className='text-grey-100'>Home</span>
                     </h1>
                 </Link>
                 {/* <form
@@ -50,19 +50,19 @@ function Header() {
                     </button>
                 </form> */}
                 <ul className='flex gap-4'>
-                    <Link to='/Listings'>
+                    <Link to='/emi'>
                         <li className='hidden sm:inline text-slate-700 hover:underline'>
-                            Search House
+                            EMI Calculator
+                        </li>
+                    </Link>
+                    <Link to='/login'>
+                        <li className='hidden sm:inline text-slate-700 hover:underline'>
+                            Login
                         </li>
                     </Link>
                     <Link to='/signUp'>
                         <li className='hidden sm:inline text-slate-700 hover:underline'>
-                            Buyer
-                        </li>
-                    </Link>
-                    <Link to='/signUp'>
-                        <li className='hidden sm:inline text-slate-700 hover:underline'>
-                            Seller
+                            Signup
                         </li>
                     </Link>
                     {/* <Link to='/profile'>

@@ -234,7 +234,7 @@ a {
     padding: 4px 10px;
 }
 
-.card-badge.green {
+.card-badge.sale {
     background: var(--yellow-green);
 }
 
@@ -246,20 +246,20 @@ a {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    overflow-x: auto;
-    margin-inline: -15px;
-    padding-inline: 15px;
-    scroll-padding-left: 15px;
+    /* overflow-x: auto; */
+    /* margin-inline: -15px;
+    padding-inline: 15px; */
+    /* scroll-padding-left: 15px; */
     padding-bottom: 60px;
-    scroll-snap-type: inline mandatory;
+    /* scroll-snap-type: inline mandatory; */
 }
 
 .has-scrollbar>li {
     min-width: 100%;
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
 }
 
-.has-scrollbar::-webkit-scrollbar-track {
+/* .has-scrollbar::-webkit-scrollbar-track {
     background: var(--cultured-2);
     outline: 2px solid var(--cadet);
     border-radius: 10px;
@@ -273,7 +273,7 @@ a {
 
 .has-scrollbar::-webkit-scrollbar-button {
     width: 15%;
-}
+} */
 
 
 
@@ -320,6 +320,23 @@ a {
     pointer-events: none;
     z-index: 1;
 }
+
+.property-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* Additional styles for list items */
+    list-style: none;
+    padding: 0;
+    margin: 25px;
+  }
+
+  .property-list li {
+    flex: 0 0 calc(33% - 15px); /* Three items per row */
+    /* Additional styles for individual list items */
+    /* margin:10px; */
+  }
 
 .property-card .banner-actions {
     position: absolute;
@@ -517,7 +534,7 @@ a {
         max-width: 550px;
         margin-inline: auto;
     }
-
+/* 
     .has-scrollbar {
         gap: 25px;
         margin-inline: -25px;
@@ -527,7 +544,7 @@ a {
 
     .has-scrollbar>li {
         min-width: calc(50% - 12.5px);
-    }
+    } */
 
 
 
