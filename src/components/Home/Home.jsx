@@ -10,6 +10,7 @@ import About from './About';
 import Services from './Services';
 
 import './styles.css';
+import Header from '../Header/Header';
 
 
 export default function Home() {
@@ -52,6 +53,8 @@ export default function Home() {
     fetchOfferListings();
   }, []);
   return (
+<>
+    <Header />
     <div>
       {/* top */}
       <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
@@ -166,5 +169,6 @@ export default function Home() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }
