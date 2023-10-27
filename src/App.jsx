@@ -22,18 +22,18 @@ function App() {
         <AuthProvider>
           {/* <Header /> */}
           <Routes>
-            <Route  path="/" element={<Home />} />
-            <Route  path="/property" element={<PropertyDetails />} />
-            <Route  path="/emi" element={<EmiCalc/>} />
-            <Route  path="/login" element={<SignIn />} />
-            <Route  path="/signup" element={<SignUp />} />
-            <Route  path="Listings" element={<ListingItem />} />
-            <Route path='/app' element={<Dashboard />}>
-            <Route path="create" index element={<CreateListing />} />
-            <Route  path="edit" element={<UpdateListing />} />
-            <Route path="show" element={<ShowListings />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/property" element={<PropertyDetails />} />
+            <Route path="/emi" element={<EmiCalc />} />
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="Listings" element={<ListingItem />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/app" element={<Dashboard />}>
+              <Route path="create" index element={<CreateListing />} />
+              <Route path="edit" element={<UpdateListing />} />
+              <Route path="show" element={<ShowListings />} />
             </Route>
-
           </Routes>
         </AuthProvider>
       </BrowserRouter>

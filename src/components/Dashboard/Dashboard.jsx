@@ -1,9 +1,20 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { BrowserRouter as Router, Route, Link, Routes, Outlet, useLocation } from 'react-router-dom';
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import service2 from '../../assets/images/service-3.png';
-import Home from '../Home/Home';
 
 const user = {
   name: 'Tom Cook',
@@ -11,7 +22,6 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
-
 
 const navigation = [
   { name: 'Add Property', href: '/app/create', current: true },
@@ -55,7 +65,6 @@ export default function Dashboard() {
                     </Link>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-
                         {navigation.map((item) => (
                           <li key={item.to}>
                             <Link
@@ -91,10 +100,14 @@ export default function Dashboard() {
                           <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img
+                            {/* <img
                               className="h-8 w-8 rounded-full"
                               src={user.imageUrl}
                               alt=""
+                            /> */}
+                            <UserCircleIcon
+                              className="h-10 w-8 border-white"
+                              aria-hidden="true"
                             />
                           </Menu.Button>
                         </div>
@@ -150,10 +163,9 @@ export default function Dashboard() {
               </div>
 
               <Disclosure.Panel className="md:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
+                {/* <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3"> */}
+                {/* {navigation.map((item) => (
                     <Link to={'/signup'}>
-
                       <Disclosure.Button
                         key={item.name}
                         as="a"
@@ -169,16 +181,12 @@ export default function Dashboard() {
                         {item.name}
                       </Disclosure.Button>
                     </Link>
-                  ))}
-                </div>
+                  ))} */}
+                {/* </div> */}
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
+                      {/* <img className="h-10 w-10 rounded-full" src="" alt="" /> */}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">

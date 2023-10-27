@@ -1,7 +1,7 @@
 // import { housesData } from './data';
 import { useParams, useLocation } from 'react-router-dom';
 import { BiBed, BiBath, BiArea } from 'react-icons/bi';
-import { Carousel } from "@material-tailwind/react";
+import { Carousel } from '@material-tailwind/react';
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -71,7 +71,6 @@ const PropertyDetails = () => {
   //     return house.id === parseInt(id);
   //   });
 
-
   return (
     <div className="container mx-auto min-h-[800px] mb-14">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
@@ -123,12 +122,12 @@ const PropertyDetails = () => {
         </div>
         <div className="flex-1 w-full mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
           <div className="flex items-center gap-x-4 mb-8">
-            <img
+            {/* <img
               className="h-20 w-20 rounded-full"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            ></img>
+            ></img> */}
             <div>
-              <div className="font-bold text-lg">{property.name}</div>
+              <div className="font-bold text-lg">Contact Dealer</div>
               {/* <Link to="/Listings" className="text-violet-700 text-sm">
                 View listings
               </Link> */}
@@ -142,8 +141,9 @@ const PropertyDetails = () => {
             <input
               type="text"
               placeholder="To: "
-              value="sqaurehouse@gmail.com"
+              value="ishikaagarwal22318@gmail.com"
               name="to_name"
+              hidden
             ></input>
             <input
               className="border border-gray-300 focus:border-orange-600 text-gray-600 rounded w-full px-4 h-14 text-sm outline-none"
@@ -203,10 +203,11 @@ const PropertyDetails = () => {
             </div>
             {notification && (
               <div
-                className={`notification ${notification.type === 'success'
-                  ? 'bg-green-600 text-white p-3 rounded-md text-center'
-                  : 'bg-red-400 p-3 rounded-md text-center'
-                  }`}
+                className={`notification ${
+                  notification.type === 'success'
+                    ? 'bg-green-600 text-white p-3 rounded-md text-center'
+                    : 'bg-red-400 p-3 rounded-md text-center'
+                }`}
               >
                 {notification.message}
               </div>
