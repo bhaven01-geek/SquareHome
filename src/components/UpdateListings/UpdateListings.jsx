@@ -11,7 +11,6 @@ import { useAuth } from '../../AuthContext/AuthContext';
 
 export default function UpdateListing() {
 
-    const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const { listing } = location.state;
@@ -124,7 +123,7 @@ export default function UpdateListing() {
         try {
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/listing/create', {
+            const res = await fetch(`http://localhost:3000/api/listing/update/${listing._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -139,7 +138,7 @@ export default function UpdateListing() {
             if (data.success === false) {
                 setError(data.message);
             }
-            navigate(`/show`);
+            navigate(`/app/show`, {replace:true});
         } catch (error) {
             setError(error.message);
             setLoading(false);
@@ -151,7 +150,7 @@ export default function UpdateListing() {
     return (
         <main className="p-3 max-w-4xl mx-auto">
             <h1 className="text-3xl font-semibold text-center my-7">
-                Create a Listing
+                Update a Listing
             </h1>
             <form
                 onSubmit={handleSubmit}

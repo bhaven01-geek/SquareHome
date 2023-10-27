@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { useAuth } from '../../AuthContext/AuthContext';
 
 export default function ShowListings() {
     const [listings, setListings] = useState([]);
     const navigate = useNavigate();
 
+    const { currentUser } = useAuth();
+    const id = currentUser.uid;
+
     useEffect(() => {
 
-        const apiUrl = 'http://localhost:3000/api/listing/get';
+        const apiUrl = `http://localhost:3000/api/listing/get/${id}`;
 
         // Fetch listings from the API
-        fetch(apiUrl)
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
             .then((response) => {
-                // if (!response.ok) {
-                //     throw new Error('Network response was not ok');
-                // }
-
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 return response.json();
             })
             .then((data) => {
@@ -70,7 +79,7 @@ export default function ShowListings() {
                                 <p className="text-sm font-semibold leading-6 text-gray-900">{listing.name}</p>
                                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{listing.address}</p>
                             </div>
-                                <p className="m-1 p-2 bg-green-500 text-white text-sm font-semibold uppercase">{listing.status}</p>
+                            <p className="m-1 p-2 bg-green-500 text-white text-sm font-semibold uppercase">{listing.status}</p>
                         </div>
                         <div className="hidden sm:flex sm:flex-col sm:items-end gap-y-2">
                             <button className="flex items-center gap-x-2 text-gray-500 hover:text-gray-700" onClick={() => handleEdit(listing)}>
