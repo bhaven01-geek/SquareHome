@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaMoneyBillWave,FaCalculator } from "react-icons/fa";
-
+import Header from "../Header/Header";
 
 function EmiCalc() {
   const [principal, setPrincipal] = useState(500000);
@@ -29,6 +29,9 @@ function EmiCalc() {
   }
 
   return (
+    <>
+    <Header/>
+
     <div className="py-10 px-4 max-w-6xl mx-auto">
       <div className="flex justify-center items-center  p-10 px-3 max-w-6xl mx-auto ">
         <div className="w-full max-w-md">
@@ -236,6 +239,7 @@ function EmiCalc() {
         </ol>
       </div>
     </div>
+    </>
   );
 }
 

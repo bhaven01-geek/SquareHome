@@ -1,16 +1,20 @@
-import { useRef, useState , useEffect} from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Search from "../SearchBox/Search";
 import "./listingItem.css";
 import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
 
 export default function ListingItem() {
 
   const navigate = useNavigate();
   const [propertyData, setPropertyData] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Number of items to display per page
+
   useEffect(() => {
 
-    const apiUrl = "http://localhost:3000/api/listing/get"; 
+    const apiUrl = "http://localhost:3000/api/listing/get";
 
     // Fetch data from the API
     fetch(apiUrl)
@@ -22,586 +26,138 @@ export default function ListingItem() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); 
+  }, []);
 
   const GotoProperty = (property) => {
     navigate(`/property`, { state: { property } });
   }
 
+  const truncateDescription = (description, maxChars) => {
+    if (description.length > maxChars) {
+      return description.slice(0, maxChars) + '...';
+    }
+    return description;
+  };
 
+  const totalPages = Math.ceil(propertyData.length / itemsPerPage);
+
+  // Calculate the indexes for the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPropertyData = propertyData.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+  };
   return (
-    <div>
-      <Search />
-      <section className="property" id="property">
-        <div className="container">
-          <p className="section-subtitle">Properties</p>
+    <>
+      <Header />
+      <div>
+        <Search />
+        <section className="property" id="property">
+          <div className="container">
+            <p className="section-subtitle">Properties</p>
 
-          <h2 className="h2 section-title">Featured Listings</h2>
+            <h2 className="h2 section-title">Featured Listings</h2>
 
 
-          <ul className="property-list">
-      {propertyData.map((property, index) => (
-        <li key={index}>
-          <div className="property-card">
-            <figure className="card-banner">
-              <img src={property.imageUrls[0]} alt={index} className="w-100" />
-              <div className={`card-badge ${property.status}`}>{property.status}</div>
-            </figure>
-            <div className="card-content">
-              <div className="card-price">
-                <strong>{property.price}</strong>
-              </div>
-            
-              <h3 className="h3 card-title">
-                <button onClick={() => GotoProperty(property)}>{property.name}
-              </button>
-              </h3>
-              <p className="card-text">{property.description}</p>
-              <ul className="card-list">
-                <li className="card-item">
-                  <strong>{property.bedrooms}</strong>
-                  <ion-icon name="bed-outline"></ion-icon>
-                  <span>Bedrooms</span>
+            <ul className="property-list">
+              {currentPropertyData.map((property, index) => (
+                <li key={index}>
+                  <div className="property-card">
+                    <figure className="card-banner">
+                      <img src={property.imageUrls[0]} alt={index} className="w-100" />
+                      <div className={`card-badge ${property.status}`}>{property.status}</div>
+                    </figure>
+                    <div className="card-content">
+                      <div className="card-price">
+                        <strong>${property.price}</strong>
+                      </div>
+
+                      <h3 className="h3 card-title">
+                        <button onClick={() => GotoProperty(property)}>{property.name}
+                        </button>
+                      </h3>
+                      <p className="card-text">{truncateDescription(property.description, 10)}</p>
+                      <ul className="card-list">
+                        <li className="card-item">
+                          <strong>{property.bedrooms}</strong>
+                          <ion-icon name="bed-outline"></ion-icon>
+                          <span>Bedrooms</span>
+                        </li>
+                        <li className="card-item">
+                          <strong>{property.bathrooms}</strong>
+
+                          <ion-icon name="man-outline"></ion-icon>
+
+                          <span>Bathrooms</span>
+                        </li>
+
+                        <li className="card-item">
+                          <strong>{property.squareFt}</strong>
+
+                          <ion-icon name="square-outline"></ion-icon>
+
+                          <span>Square Ft</span>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                    <div className="card-footer">
+
+                      <div className="card-footer-actions">
+
+
+                        <button className="card-footer-actions-btn">
+                          <i class="fa-solid fa-heart"></i>
+                          {/* <ion-icon name="heart-outline"></ion-icon> */}
+                        </button>
+
+
+                      </div>
+                    </ div>
+                  </div>
                 </li>
-                <li className="card-item">
-                      <strong>{property.bathrooms}</strong>
+              ))}
+            </ul>
 
-                      <ion-icon name="man-outline"></ion-icon>
+            <div className="pagination flex justify-center mt-8">
+              <button
+                onClick={() => changePage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`mr-2 p-4 rounded-full ${currentPage === 1 ? "bg-gray-300" : "bg-blue-500 text-white"}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                </svg>
+              </button>
 
-                      <span>Bathrooms</span>
-                    </li>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => changePage(index + 1)}
+                  className={`mr-2 p-4 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"}`}
+                >
+                  {index + 1}
+                </button>
+              ))}
 
-                    <li className="card-item">
-                      <strong>{property.squareFt}</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-              </ul>
+              <button
+                onClick={() => changePage(currentPage + 1)}
+                disabled={indexOfLastItem >= propertyData.length}
+                className={`ml-2 p-4 rounded-full ${currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 text-white"}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
-        </li>
-      ))}
-    </ul>
+        </section>
+      </div>
+    </>
 
-          <ul className="property-list">
-            <li>
-              <div className="property-card">
-                <figure className="card-banner">
-                  {/* <a href="/"> */}
-                  <img
-                    src="https://media.istockphoto.com/id/1421422160/photo/interior-of-living-room.jpg?s=612x612&w=is&k=20&c=f2P4MD78gZeAHzH4IIZb_Tw_6RprT6Yb6O9xp8iAX94="
-                    alt="New Apartment Nice View"
-                    className="w-100"
-                  />
-                  {/* </a> */}
-
-                  <div className="card-badge green">For Rent</div>
-
-
-                </figure>
-
-                <div className="card-content">
-                  <div className="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 className="h3 card-title">
-                    <a href="/">New Apartment Nice View</a>
-                  </h3>
-
-                  <p className="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly
-                    Renovated With New Wood
-                  </p>
-
-                  <ul className="card-list">
-                    <li className="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-
-                    </li>
-
-                    <li className="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  {/* <div className="card-author">
-                    <figure className="author-avatar">
-                      <img
-                        src="./assets/images/author.jpg"
-                        alt="William Seklo"
-                        className="w-100"
-                      />
-                    </figure>
-
-                    <div>
-                      <p className="author-name">
-                        <a href="/">William Seklo</a>
-                      </p>
-
-                      <p className="author-title">Estate Agents</p>
-                    </div>
-                  </div> */}
-
-                  <div className="card-footer-actions">
-
-                    <button className="card-footer-actions-btn">
-                      <i class="fa-solid fa-heart"></i>
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="property-card">
-                <figure className="card-banner">
-                  {/* <a href="/"> */}
-                  <img
-                    src="https://media.istockphoto.com/id/1421422160/photo/interior-of-living-room.jpg?s=612x612&w=is&k=20&c=f2P4MD78gZeAHzH4IIZb_Tw_6RprT6Yb6O9xp8iAX94="
-                    alt="New Apartment Nice View"
-                    className="w-100"
-                  />
-                  {/* </a> */}
-
-                  <div className="card-badge green">For Rent</div>
-
-
-                </figure>
-
-                <div className="card-content">
-                  <div className="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 className="h3 card-title">
-                    <a href="/">New Apartment Nice View</a>
-                  </h3>
-
-                  <p className="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly
-                    Renovated With New Wood
-                  </p>
-
-                  <ul className="card-list">
-                    <li className="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-
-                    </li>
-
-                    <li className="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  {/* <div className="card-author">
-                    <figure className="author-avatar">
-                      <img
-                        src="./assets/images/author.jpg"
-                        alt="William Seklo"
-                        className="w-100"
-                      />
-                    </figure>
-
-                    <div>
-                      <p className="author-name">
-                        <a href="/">William Seklo</a>
-                      </p>
-
-                      <p className="author-title">Estate Agents</p>
-                    </div>
-                  </div> */}
-
-                  <div className="card-footer-actions">
-
-                    <button className="card-footer-actions-btn">
-                      <i class="fa-solid fa-heart"></i>
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li>
-
-
-              <div className="property-card">
-                <figure className="card-banner">
-                  <a href="/">
-                    <img
-                      src="https://media.istockphoto.com/id/1197307802/photo/modern-living-room-with-library-and-books.jpg?s=2048x2048&w=is&k=20&c=1uw-swsidSu9QqgxGAlORXU4yl4agUH3viRqeeQq-hk="
-                      alt="Modern Apartments"
-                      className="w-100"
-                    />
-                  </a>
-
-                  <div className="card-badge orange">For Sales</div>
-
-                  <div className="banner-actions">
-                    <button className="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-                  </div>
-                </figure>
-
-                <div className="card-content">
-                  <div className="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 className="h3 card-title">
-                    <a href="/">Modern Apartments</a>
-                  </h3>
-
-                  <p className="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly
-                    Renovated With New Wood
-                  </p>
-
-                  <ul className="card-list">
-                    <li className="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  <div className="card-author">
-                    <figure className="author-avatar">
-                      <img
-                        src="./assets/images/author.jpg"
-                        alt="William Seklo"
-                        className="w-100"
-                      />
-                    </figure>
-
-                    <div>
-                      <p className="author-name">
-                        <a href="/">William Seklo</a>
-                      </p>
-
-                      <p className="author-title">Estate Agents</p>
-                    </div>
-                  </div>
-
-                  <div className="card-footer-actions">
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div className="property-card">
-                <figure className="card-banner">
-                  <a href="/">
-                    <img
-                      src="https://media.istockphoto.com/id/1001130366/photo/modern-bright-skandinavian-interior-design-living-room.jpg?s=2048x2048&w=is&k=20&c=5kh_4noD6Q0XxmK2jLjQLPmScaUamtpPeBfDD5w3Gyo="
-                      alt="Comfortable Apartment"
-                      className="w-100"
-                    />
-                  </a>
-
-                  <div className="card-badge green">For Rent</div>
-
-                  <div className="banner-actions">
-                    <button className="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-                  </div>
-                </figure>
-
-                <div className="card-content">
-                  <div className="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 className="h3 card-title">
-                    <a href="/">Comfortable Apartment</a>
-                  </h3>
-
-                  <p className="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly
-                    Renovated With New Wood
-                  </p>
-
-                  <ul className="card-list">
-                    <li className="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  <div className="card-author">
-                    <figure className="author-avatar">
-                      <img
-                        src="./assets/images/author.jpg"
-                        alt="William Seklo"
-                        className="w-100"
-                      />
-                    </figure>
-
-                    <div>
-                      <p className="author-name">
-                        <a href="/">William Seklo</a>
-                      </p>
-
-                      <p className="author-title">Estate Agents</p>
-                    </div>
-                  </div>
-
-                  <div className="card-footer-actions">
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div className="property-card">
-                <figure className="card-banner">
-                  <a href="/">
-                    <img
-                      src="./assets/images/property-4.png"
-                      alt="Luxury villa in Rego Park"
-                      className="w-100"
-                    />
-                  </a>
-
-                  <div className="card-badge green">For Rent</div>
-
-                  <div className="banner-actions">
-                    <button className="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button className="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-                  </div>
-                </figure>
-
-                <div className="card-content">
-                  <div className="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 className="h3 card-title">
-                    <a href="/">Luxury villa in Rego Park</a>
-                  </h3>
-
-                  <p className="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly
-                    Renovated With New Wood
-                  </p>
-
-                  <ul className="card-list">
-                    <li className="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li className="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  <div className="card-author">
-                    <figure className="author-avatar">
-                      <img
-                        src="./assets/images/author.jpg"
-                        alt="William Seklo"
-                        className="w-100"
-                      />
-                    </figure>
-
-                    <div>
-                      <p className="author-name">
-                        <a href="/">William Seklo</a>
-                      </p>
-
-                      <p className="author-title">Estate Agents</p>
-                    </div>
-                  </div>
-
-                  <div className="card-footer-actions">
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button className="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-    </div>
   );
 }

@@ -8,27 +8,15 @@ const PropertyDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const properties = [
-    {
-      value: 'Price range (any)',
-    },
-    {
-      value: '100000 - 130000',
-    },
-    {
-      value: '130000 - 160000',
-    },
-    {
-      value: '160000 - 190000',
-    },
-    {
-      value: '190000 - 220000',
-    },
-    {
-      value: '20000 - 30000',
-    },
-    {
-      value: '30000 - 40000',
-    },
+      {
+        value:'Apartment'
+      },
+      {
+        value:'House'
+      },
+      {
+        value:'Land'
+      }
   ];
   return (
     <Menu as='div' className='dropdown '>
@@ -52,15 +40,16 @@ const PropertyDropdown = () => {
       </Menu.Button>
 
       <Menu.Items className='dropdown-menu'>
-        {properties.map((value, index) => {
+        {properties.map((property, index) => {
+
           return (
             <Menu.Item
               as='li'
-            //   onClick={() => setProperty(value)}
+            //   onClick={() => setProperty(property.value)}
               key={index}
               className='cursor-pointer hover:text-violet-700 transition'
             >
-              {properties.value}
+              {property.value}
             </Menu.Item>
           );
         })}
