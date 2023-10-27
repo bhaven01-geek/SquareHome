@@ -28,6 +28,7 @@ export default function ListingItem() {
       });
   }, []);
 
+  console.log(propertyData);
   const GotoProperty = (property) => {
     navigate(`/property`, { state: { property } });
   }
@@ -63,64 +64,67 @@ export default function ListingItem() {
 
 
             <ul className="property-list">
-              {currentPropertyData.map((property, index) => (
-                <li key={index}>
-                  <div className="property-card">
-                    <figure className="card-banner">
-                      <img src={property.imageUrls[0]} alt={index} className="w-100" />
-                      <div className={`card-badge ${property.status}`}>{property.status}</div>
-                    </figure>
-                    <div className="card-content">
-                      <div className="card-price">
-                        <strong>${property.price}</strong>
+              {currentPropertyData.length === 0 ? (
+                <p>No listings to show.</p>
+              ) : (
+                currentPropertyData.map((property, index) => (
+                  <li key={index}>
+                    <div className="property-card">
+                      <figure className="card-banner">
+                        <img src={property.imageUrls[0]} alt={index} className="w-100" />
+                        <div className={`card-badge ${property.status}`}>{property.status}</div>
+                      </figure>
+                      <div className="card-content">
+                        <div className="card-price">
+                          <strong>${property.price}</strong>
+                        </div>
+
+                        <h3 className="h3 card-title">
+                          <button onClick={() => GotoProperty(property)}>{property.name}
+                          </button>
+                        </h3>
+                        <p className="card-text">{truncateDescription(property.description, 10)}</p>
+                        <ul className="card-list">
+                          <li className="card-item">
+                            <strong>{property.bedrooms}</strong>
+                            <ion-icon name="bed-outline"></ion-icon>
+                            <span>Bedrooms</span>
+                          </li>
+                          <li className="card-item">
+                            <strong>{property.bathrooms}</strong>
+
+                            <ion-icon name="man-outline"></ion-icon>
+
+                            <span>Bathrooms</span>
+                          </li>
+
+                          <li className="card-item">
+                            <strong>{property.squareFt}</strong>
+
+                            <ion-icon name="square-outline"></ion-icon>
+
+                            <span>Square Ft</span>
+                          </li>
+
+                        </ul>
                       </div>
 
-                      <h3 className="h3 card-title">
-                        <button onClick={() => GotoProperty(property)}>{property.name}
-                        </button>
-                      </h3>
-                      <p className="card-text">{truncateDescription(property.description, 10)}</p>
-                      <ul className="card-list">
-                        <li className="card-item">
-                          <strong>{property.bedrooms}</strong>
-                          <ion-icon name="bed-outline"></ion-icon>
-                          <span>Bedrooms</span>
-                        </li>
-                        <li className="card-item">
-                          <strong>{property.bathrooms}</strong>
+                      <div className="card-footer">
 
-                          <ion-icon name="man-outline"></ion-icon>
+                        <div className="card-footer-actions">
 
-                          <span>Bathrooms</span>
-                        </li>
 
-                        <li className="card-item">
-                          <strong>{property.squareFt}</strong>
+                          <button className="card-footer-actions-btn">
+                            <i class="fa-solid fa-heart"></i>
+                            {/* <ion-icon name="heart-outline"></ion-icon> */}
+                          </button>
 
-                          <ion-icon name="square-outline"></ion-icon>
 
-                          <span>Square Ft</span>
-                        </li>
-
-                      </ul>
+                        </div>
+                      </ div>
                     </div>
-
-                    <div className="card-footer">
-
-                      <div className="card-footer-actions">
-
-
-                        <button className="card-footer-actions-btn">
-                          <i class="fa-solid fa-heart"></i>
-                          {/* <ion-icon name="heart-outline"></ion-icon> */}
-                        </button>
-
-
-                      </div>
-                    </ div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                )))}
             </ul>
 
             <div className="pagination flex justify-center mt-8">

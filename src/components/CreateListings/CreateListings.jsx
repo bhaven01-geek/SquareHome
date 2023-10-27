@@ -29,7 +29,6 @@ export default function CreateListing() {
   });
 
   const { currentUser } = useAuth();
-  const user_uid = currentUser.uid;
 
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -140,7 +139,8 @@ export default function CreateListing() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_uid: user_uid
+          user_uid: currentUser.uid,
+          email: currentUser.email
         })
       });
 
@@ -168,7 +168,6 @@ export default function CreateListing() {
         }
       }
       navigate(`/app/show`, {replace:true});
-
     } catch (error) {
       console.log(error);
       setError(error.message);

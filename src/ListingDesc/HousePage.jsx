@@ -66,10 +66,6 @@ const PropertyDetails = () => {
       );
   };
 
-  //   const { id } = useParams();
-  //   const property = housesData.find((house) => {
-  //     return house.id === parseInt(id);
-  //   });
 
 
   return (
@@ -142,12 +138,12 @@ const PropertyDetails = () => {
             <input
               type="text"
               placeholder="To: "
-              value="sqaurehouse@gmail.com"
+              value={property.seller.email}
               name="to_name"
             ></input>
             <input
               className="border border-gray-300 focus:border-orange-600 text-gray-600 rounded w-full px-4 h-14 text-sm outline-none"
-              type="text"
+              type="text" 
               placeholder="Name*"
               name="from_name"
               required
