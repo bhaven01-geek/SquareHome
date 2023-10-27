@@ -19,35 +19,7 @@ export default function SignUp() {
     console.log('fj');
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
 
-  //   try {
-  //     setLoading(true);
-  //     const res = await fetch('/api/auth/signup', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     const data = await res.json();
-  //     console.log(data);
-  //     if (data.success === false) {
-  //       setLoading(false);
-  //       setError(data.message);
-  //       return;
-  //     }
-  //     setLoading(false);
-  //     setError(null);
-  //     navigate('/sign-in');
-  //   } catch (error) {
-  //     setLoading(false);
-  //     setError(error.message);
-  //   }
-
-  // };
 
   const handleSubmit = async (e) => {
     console.log(formData);
@@ -60,15 +32,15 @@ export default function SignUp() {
 
       const res = await signup(email, password);
       // const data = await createDisplayProfile(res, username)
-      console.log(data);
-      if (data.success === false) {
+      console.log(res);
+      if (res.success === false) {
         // setLoading(false);
         // setError(data.message);
         return;
       }
       // setLoading(false);
       // setError(null);
-      // navigate('/login');
+      navigate('/login');
     } catch (error) {
       setLoading(false);
       setError(error.message);
