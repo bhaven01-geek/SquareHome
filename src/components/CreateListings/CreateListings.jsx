@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext/AuthContext';
 
 export default function CreateListing() {
-
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
@@ -18,7 +17,7 @@ export default function CreateListing() {
     name: '',
     description: '',
     address: '',
-    propertyType: "",
+    propertyType: '',
     bedrooms: 1,
     bathrooms: 1,
     parking: false,
@@ -37,7 +36,6 @@ export default function CreateListing() {
   const propertyTypeOptions = ['Apartment', 'House', 'Land'];
   console.log(formData);
 
-
   const handleImageSubmit = (e) => {
     console.log(files);
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
@@ -53,7 +51,6 @@ export default function CreateListing() {
           setFormData({
             ...formData,
             imageUrls: formData.imageUrls.concat(urls),
-
           });
           setImageUploadError(false);
           setUploading(false);
@@ -72,7 +69,7 @@ export default function CreateListing() {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
       const fileName = new Date().getTime() + file.name;
-      const storageRef = ref(storage, fileName)
+      const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         'state_changed',
@@ -101,7 +98,6 @@ export default function CreateListing() {
   };
 
   const handleChange = (e) => {
-
     if (
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
@@ -117,7 +113,7 @@ export default function CreateListing() {
       e.target.type === 'number' ||
       e.target.type === 'text' ||
       e.target.type === 'textarea' ||
-      e.target.type === "select-one"
+      e.target.type === 'select-one'
     ) {
       setFormData({
         ...formData,
@@ -126,30 +122,28 @@ export default function CreateListing() {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
     try {
       setLoading(true);
       setError(false);
-      const sellerObject = await fetch("http://localhost:3000/seller/uid", {
+      const sellerObject = await fetch('http://localhost:3000/seller/uid', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_uid: currentUser.uid,
+          user_uid: currentUser.uid,,
           email: currentUser.email
-        })
+        }),
       });
 
       if (sellerObject.ok) {
         const sellerData = await sellerObject.json();
         console.log('Seller data:', sellerData);
 
-
-        const res = await fetch("http://localhost:3000/api/listing/create", {
+        const res = await fetch('http://localhost:3000/api/listing/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -168,6 +162,7 @@ export default function CreateListing() {
         }
       }
       navigate(`/app/show`, {replace:true});
+
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -175,17 +170,12 @@ export default function CreateListing() {
     }
   };
 
-
-
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
         Create a Listing
       </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row gap-4"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
@@ -353,7 +343,6 @@ export default function CreateListing() {
                 {/* )} */}
               </div>
             </div>
-
           </div>
         </div>
         <div className="flex flex-col flex-1 gap-4">
@@ -382,29 +371,30 @@ export default function CreateListing() {
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
           </div>
-          <p className='text-red-700 text-sm'>
+          <p className="text-red-700 text-sm">
             {imageUploadError && imageUploadError}
           </p>
           {formData.imageUrls.length > 0 &&
             formData.imageUrls.map((url, index) => (
               <div
                 key={url}
-                className='flex justify-between p-3 border items-center'
+                className="flex justify-between p-3 border items-center"
               >
                 <img
                   src={url}
-                  alt='listing image'
-                  className='w-20 h-20 object-contain rounded-lg'
+                  alt="listing image"
+                  className="w-20 h-20 object-contain rounded-lg"
                 />
                 <button
-                  type='button'
+                  type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className='p-3 text-red-700 rounded-lg uppercase hover:opacity-75'
+                  className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
                 >
                   Delete
                 </button>
               </div>
             ))}
+
           <button
             // disabled={loading || uploading}
             className="p-3 bg-orange-400 hover:bg-orange-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80 text-center"
@@ -412,7 +402,7 @@ export default function CreateListing() {
             Create Listing
             {/* {loading ? 'Creating...' : 'Create listing'} */}
           </button>
-          {error && <p className='text-red-700 text-sm'>{error}</p>}
+          {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
     </main>
