@@ -326,16 +326,15 @@ a {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    /* Additional styles for list items */
     list-style: none;
     padding: 0;
     margin: 25px;
   }
 
   .property-list li {
-    flex: 0 0 calc(33% - 15px); /* Three items per row */
-    /* Additional styles for individual list items */
-    /* margin:10px; */
+ /* Three items per row */
+ flex: 0 0 calc(33.33% - 20px);
+    margin-bottom:20px;
   }
 
 .property-card .banner-actions {
@@ -404,6 +403,8 @@ a {
     margin-bottom: 25px;
 }
 
+
+  
 .property-card .card-list {
     display: flex;
     flex-wrap: wrap;
