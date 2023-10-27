@@ -168,6 +168,7 @@ export default function CreateListing() {
         }
       }
       navigate(`/app/show`, {replace:true});
+
     } catch (error) {
       console.log(error);
       setError(error.message);

@@ -41,10 +41,11 @@ const PropertyDropdown = () => {
 
       <Menu.Items className='dropdown-menu'>
         {properties.map((property, index) => {
+
           return (
             <Menu.Item
               as='li'
-            //   onClick={() => setProperty(value)}
+            //   onClick={() => setProperty(property.value)}
               key={index}
               className='cursor-pointer hover:text-violet-700 transition'
             >

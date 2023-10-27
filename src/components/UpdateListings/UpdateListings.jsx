@@ -11,6 +11,7 @@ import { useAuth } from '../../AuthContext/AuthContext';
 
 export default function UpdateListing() {
 
+
     const navigate = useNavigate();
     const location = useLocation();
     const { listing } = location.state;
@@ -123,7 +124,9 @@ export default function UpdateListing() {
         try {
             setLoading(true);
             setError(false);
+
             const res = await fetch(`http://localhost:3000/api/listing/update/${listing._id}`, {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -139,6 +142,7 @@ export default function UpdateListing() {
                 setError(data.message);
             }
             navigate(`/app/show`, {replace:true});
+
         } catch (error) {
             setError(error.message);
             setLoading(false);

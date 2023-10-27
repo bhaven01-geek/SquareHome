@@ -50,16 +50,19 @@ function Header() {
                     </button>
                 </form> */}
                 <ul className='flex gap-4'>
+
                 <Link to='/Listings'>
                         <li className='hidden sm:inline text-slate-700 hover:underline'>
                             Search Property
                         </li>
                     </Link>
+                  
                     <Link to='/emi'>
                         <li className='hidden sm:inline text-slate-700 hover:underline'>
                             EMI Calculator
                         </li>
                     </Link>
+
                     <Link to='/login'>
                         <li className='hidden sm:inline text-slate-700 hover:underline'>
                             Login

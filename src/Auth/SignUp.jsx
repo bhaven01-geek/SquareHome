@@ -19,8 +19,6 @@ export default function SignUp() {
     console.log('fj');
   };
 
-
-
   const handleSubmit = async (e) => {
     console.log(formData);
     // e.preventDefault();
