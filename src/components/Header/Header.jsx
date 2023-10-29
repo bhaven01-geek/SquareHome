@@ -72,7 +72,7 @@ function Header() {
                         </li>
                     </Link>
                     <Link to='/signUp'>
-                        <li className='hidden sm:inline text-slate-700 bg-violet hover:bg-violet-800 text-white px-4 py-3 rounded-lg transition'>
+                        <li className='hidden sm:inline text-slate-700 bg-violet hover:bg-purple-800 text-white px-4 py-3 rounded-lg transition'>
                             Signup
                         </li>
                     </Link>

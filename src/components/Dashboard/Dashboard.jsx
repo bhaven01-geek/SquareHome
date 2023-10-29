@@ -14,7 +14,7 @@ import {
   Outlet,
   useLocation,
 } from 'react-router-dom';
-import service2 from '../../assets/images/service-3.png';
+import service2 from '../../assets/images/service-33.jpg';
 
 const user = {
   name: 'Tom Cook',
@@ -41,7 +41,7 @@ export default function Dashboard() {
   return (
     <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-white-800 shadow-md">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -59,8 +59,8 @@ export default function Dashboard() {
                         {' '}
                         {/* flex-wrap is used to wrap the text in mobile view */}
                         {/* make FaHome bigger */}
-                        <span className="text-orange-400"> Property</span>
-                        <span className="text-orange-700">Portal</span>
+                        <span className="text-violet">SQUARE</span>
+                        <span className="text-violet">HOME</span>
                       </h1>
                     </Link>
                     <div className="hidden md:block">
@@ -71,8 +71,8 @@ export default function Dashboard() {
                               to={item.href}
                               className={classNames(
                                 location.pathname === item.href
-                                  ? 'bg-gray-900 text-white'
-                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                  ? 'bg-violet text-white'
+                                  : 'text-gray-900 hover:bg-orange-500 hover:text-white',
                                 'rounded-md px-3 py-2 text-sm font-medium'
                               )}
                             >
@@ -87,7 +87,7 @@ export default function Dashboard() {
                     <div className="ml-4 flex items-center md:ml-6">
                       <button
                         type="button"
-                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="relative rounded-full p-1 max-w-xs text-purple hover:text-violet focus:outline-none  focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-800"
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
@@ -97,7 +97,7 @@ export default function Dashboard() {
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="relative flex max-w-xs text-purple hover:text-violet items-center rounded-full  text-sm focus:outline-none focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
                             {/* <img
