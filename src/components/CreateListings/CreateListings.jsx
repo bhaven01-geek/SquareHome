@@ -135,7 +135,7 @@ export default function CreateListing() {
         },
         body: JSON.stringify({
           user_uid: currentUser.uid,
-          email: currentUser.email
+          email: currentUser.email,
         }),
       });
 
@@ -161,8 +161,7 @@ export default function CreateListing() {
           setError(data.message);
         }
       }
-      navigate(`/app/show`, {replace:true});
-
+      navigate(`/app/show`, { replace: true });
     } catch (error) {
       console.log(error);
       setError(error.message);
