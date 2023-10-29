@@ -131,7 +131,7 @@ export default function ListingItem() {
               <button
                 onClick={() => changePage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`mr-2 p-4 rounded-full ${currentPage === 1 ? "bg-gray-300" : "bg-blue-500 text-white"}`}
+                className={`mr-2 p-4 rounded-full ${currentPage === 1 ? "bg-gray-300" : "bg-violet text-white"}`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
@@ -142,7 +142,7 @@ export default function ListingItem() {
                 <button
                   key={index}
                   onClick={() => changePage(index + 1)}
-                  className={`mr-2 p-4 rounded-full ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300"}`}
+                  className={`mr-2 p-4 rounded-full ${currentPage === index + 1 ? "bg-violet text-white" : "bg-gray-300"}`}
                 >
                   {index + 1}
                 </button>
@@ -151,7 +151,7 @@ export default function ListingItem() {
               <button
                 onClick={() => changePage(currentPage + 1)}
                 disabled={indexOfLastItem >= propertyData.length}
-                className={`ml-2 p-4 rounded-full ${currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 text-white"}`}
+                className={`ml-2 p-4 rounded-full ${currentPage === totalPages ? "bg-gray-300" : "bg-violet text-white"}`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />

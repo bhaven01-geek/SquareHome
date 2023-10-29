@@ -134,7 +134,7 @@ export default function CreateListing() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_uid: currentUser.uid,,
+          user_uid: currentUser.uid,
           email: currentUser.email
         }),
       });
@@ -397,7 +397,7 @@ export default function CreateListing() {
 
           <button
             // disabled={loading || uploading}
-            className="p-3 bg-orange-400 hover:bg-orange-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80 text-center"
+            className="p-3 bg-violet hover:bg-orange-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80 text-center"
           >
             Create Listing
             {/* {loading ? 'Creating...' : 'Create listing'} */}

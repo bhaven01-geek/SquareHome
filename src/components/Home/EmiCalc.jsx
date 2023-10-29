@@ -35,8 +35,8 @@ function EmiCalc() {
     <div className="py-10 px-4 max-w-6xl mx-auto">
       <div className="flex justify-center items-center  p-10 px-3 max-w-6xl mx-auto ">
         <div className="w-full max-w-md">
-          <div className="w-full max-w-md border border-orange-600 rounded-lg p-6 relative">
-            <div className="absolute top-0 left-0 w-12 h-12 bg-orange-600 transform -translate-y-1/2 -translate-x-1/2 rotate-45"></div>
+          <div className="w-full max-w-md border border-black rounded-lg p-6 relative">
+            <div className="absolute top-0 left-0 w-12 h-12 bg-violet transform -translate-y-1/2 -translate-x-1/2 rotate-45"></div>
             <h2 className="text-2xl font-semibold mb-4">
               Home Loan EMI Calculator
             </h2>
@@ -70,7 +70,7 @@ function EmiCalc() {
             <div className="flex justify-center">
               <button
                 onClick={calculateEMI}
-                className="text-xs sm:text-sm font-bold hover:underline bg-orange-600 hover:bg-green-900 text-white py-2 px-4 rounded"
+                className="text-xs sm:text-sm font-bold hover:underline bg-violet hover:bg-green-900 text-white py-2 px-4 rounded"
               >
                 Calculate EMI
               </button>

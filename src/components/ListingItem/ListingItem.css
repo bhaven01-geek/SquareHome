@@ -7,6 +7,7 @@
     --raisin-black-2: hsl(229, 17%, 19%);
     --yellow-green: hsl(89, 72%, 45%);
     --orange-soda: hsl(9, 100%, 62%);
+    --violet:#6D29D9;
     --cultured-1: hsl(0, 0%, 93%);
     --cultured-2: hsl(192, 24%, 96%);
     --misty-rose: hsl(7, 56%, 91%);
@@ -378,7 +379,7 @@ a {
 }
 
 .card-price {
-    color: var(--orange-soda);
+    color:#7752FE;
     font-family: var(--ff-poppins);
     font-size: var(--fs-5);
     margin-bottom: 5px;
@@ -485,8 +486,8 @@ a {
 }
 
 .card-footer-actions-btn {
-    background: var(--cultured-2);
-    color: var(--cadet);
+    background: var(--seashell);
+    color: red;
     width: 35px;
     height: 35px;
     display: grid;

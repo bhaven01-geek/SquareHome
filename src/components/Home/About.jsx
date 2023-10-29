@@ -27,7 +27,7 @@ export default function About() {
             <ul className="about-list">
               <li className="about-item">
                 <div className="about-item-icon">
-                  <FaHome className="text-orange-500" />
+                  <FaHome className="text-blue-500" />
                 </div>
                 <p className="about-item-text">Smart Home Design</p>
               </li>

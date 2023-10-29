@@ -24,7 +24,7 @@ function Header() {
         }
     }, [location.search]);
     return (
-        <header className='bg-orange-300 shadow-md'> {/*good seo practice to have a header tag */}
+        <header className=' shadow-md'> {/*good seo practice to have a header tag */}
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
                     <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'> {/* flex-wrap is used to wrap the text in mobile view */}
@@ -32,6 +32,9 @@ function Header() {
                         <FaHome className='text-orange-500' />
                         <span className='text-black-400'>Square</span>
                         <span className='text-grey-100'>Home</span>
+                        <span className='text-violet font-bold text-xl'>.</span>
+
+
                     </h1>
                 </Link>
                 {/* <form
@@ -49,27 +52,27 @@ function Header() {
                         <FaSearch className='text-slate-600' />
                     </button>
                 </form> */}
-                <ul className='flex gap-4'>
+                <ul className='flex gap-12'>
 
                 <Link to='/Listings'>
-                        <li className='hidden sm:inline text-slate-700 hover:underline'>
+                        <li className='hidden sm:inline text-slate-700 hover:text-violet'>
                             Search Property
                         </li>
                     </Link>
                   
                     <Link to='/emi'>
-                        <li className='hidden sm:inline text-slate-700 hover:underline'>
+                        <li className='hidden sm:inline text-slate-700 hover:text-violet'>
                             EMI Calculator
                         </li>
                     </Link>
 
                     <Link to='/login'>
-                        <li className='hidden sm:inline text-slate-700 hover:underline'>
+                        <li className='hidden sm:inline text-slate-700 hover:text-violet'>
                             Login
                         </li>
                     </Link>
                     <Link to='/signUp'>
-                        <li className='hidden sm:inline text-slate-700 hover:underline'>
+                        <li className='hidden sm:inline text-slate-700 bg-violet hover:bg-violet-800 text-white px-4 py-3 rounded-lg transition'>
                             Signup
                         </li>
                     </Link>

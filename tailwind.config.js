@@ -26,6 +26,8 @@ module.exports = withMT({
       colors: {
         primary: '#101828',
         secondary: '#7F56D9',
+        violet:'#6D29D9',
+        red_primary:'#EF5355',
       },
       boxShadow: {
         1: '0px 4px 30px rgba(0, 0, 0, 0.08)',

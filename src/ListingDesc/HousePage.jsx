@@ -76,10 +76,10 @@ const PropertyDetails = () => {
           <h3 className="text-lg mb-4">{property.address}</h3>
         </div>
         <div className="mb-4 lg:mb-0 flex gap-x-2 text-sm">
-          <div className="bg-orange-400 rounded-full text-white px-6 inline-block py-3">
+          <div className="bg-red-400 rounded-full text-white px-6 inline-block py-3">
             {property.propertyType}
           </div>
-          <div className="bg-orange-600 rounded-full text-white px-6 inline-block py-3">
+          <div className="bg-blue-600 rounded-full text-white px-6 inline-block py-3">
             {property.address}
           </div>
         </div>
@@ -98,7 +98,7 @@ const PropertyDetails = () => {
               ))}
             </Carousel>
           </div>
-          <div className="flex gap-x-8 text-orange-600 mb-6">
+          <div className="flex gap-x-8 text-violet mb-6">
             <div className="flex gap-x-2 items-center">
               <BiBed className="text-2xl" />
               <div className="text-lg font-medium">{property.bedrooms}</div>
@@ -111,7 +111,7 @@ const PropertyDetails = () => {
               <BiArea className="text-2xl" />
               <div className="text-lg font-medium">{property.squareFt}</div>
             </div>
-            <div className="flex gap-x-2  text-3xl font-semibold text-orange-600">
+            <div className="flex gap-x-2  text-3xl font-semibold text-red_primary">
               $ {property.price}
             </div>
           </div>
@@ -192,7 +192,7 @@ const PropertyDetails = () => {
             />
             <div className="flex gap-x-2">
               <button
-                className="bg-orange-600 hover:bg-orange-400 text-white rounded p-4 text-sm w-full transition text-center"
+                className="bg-violet hover:bg-red-400 text-white rounded p-4 text-sm w-full transition text-center"
                 type="submit"
               >
                 Send Message

@@ -75,27 +75,30 @@ export default function ShowListings() {
         <main className="p-3 max-w-4xl mx-auto">
             <ul role="list" className="divide-y divide-gray-100">
                 {listings.map((listing) => (
-                    <li key={listing._id} className="flex justify-between gap-x-6 py-5">
-                        <div className="flex min-w-0 gap-x-4">
-                            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={listing.imageUrls[0]} alt="" />
+                    <li key={listing._id} className="flex justify-between gap-x-6 py-6 border px-8 border-gray-950">
+                        <div className="flex min-w-0 gap-x-6">
+                            <img className="h-14 w-14 flex-none rounded-full bg-gray-50" src={listing.imageUrls[0]} alt="" />
                             <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-gray-900">{listing.name}</p>
-                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">{listing.address}</p>
+                                <p className="text-xl font-semibold leading-6 text-gray-900">{listing.name}</p>
+                                <p className="mt-1 truncate text-sm leading-5 text-gray-500">{listing.address}</p>
                             </div>
+<div className='min-w-0 flex-auto'>
 
-                            <p className="m-1 p-2 bg-green-500 text-white text-sm font-semibold uppercase">{listing.status}</p>
+                            <p className="m-1 p-1 text-center bg-green-500 text-white text-sm font-semibold uppercase">{listing.status}</p>
+</div>
 
                         </div>
                         <div className="hidden sm:flex sm:flex-col sm:items-end gap-y-2">
-                            <button className="flex items-center gap-x-2 text-gray-500 hover:text-gray-700" onClick={() => handleEdit(listing)}>
+                            <button className="flex items-center gap-x-2 text-green-500 hover:text-green-700" onClick={() => handleEdit(listing)}>
                                 <PencilIcon className="h-5 w-5" />
                             </button>
-                            <button className="flex items-center gap-x-2 text-gray-500 hover:text-gray-700" onClick={() => handleDelete(listing._id)}>
+                            <button className="flex items-center gap-x-2 text-red-500 hover:text-red-700" onClick={() => handleDelete(listing._id)}>
                                 <TrashIcon className="h-5 w-5" />
                             </button>
                         </div>
                     </li>
                 ))}
+                
             </ul>
         </main>
     );
