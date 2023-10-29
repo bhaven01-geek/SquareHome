@@ -1,7 +1,7 @@
 import React from "react";
-import service1 from "../../assets/images/service-1.png";
-import service2 from "../../assets/images/service-3.png";
-import service3 from "../../assets/images/service-2.png";
+import service1 from "../../assets/images/service-11.jpg";
+import service2 from "../../assets/images/service-22.jpg";
+import service3 from "../../assets/images/service-33.jpg";
 import { FaArrowRight } from "react-icons/fa";
 import "./styles.css";
 import { Link } from "react-router-dom";

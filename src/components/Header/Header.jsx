@@ -28,10 +28,10 @@ function Header() {
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
                     <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'> {/* flex-wrap is used to wrap the text in mobile view */}
-                        {/* make FaHome bigger */}
-                        <FaHome className='text-orange-500' />
-                        <span className='text-black-400'>Square</span>
-                        <span className='text-grey-100'>Home</span>
+                        {/* <FaHome className='text-violet mt-1' />
+                        make FaHome bigger */}
+                        <span className='text-violet'>SQUARE</span>
+                        <span className='text-grey-100'>HOME</span>
                         <span className='text-violet font-bold text-xl'>.</span>
 
 
