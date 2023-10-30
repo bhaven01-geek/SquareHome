@@ -4,6 +4,7 @@ import { BiBed, BiBath, BiArea } from 'react-icons/bi';
 import { Carousel } from '@material-tailwind/react';
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import Amenties from '../Amenties/Amenties';
 
 // import { Link } from 'react-router-dom';
 
@@ -66,7 +67,11 @@ const PropertyDetails = () => {
       );
   };
 
-
+  const selectedAmenities = {
+    Security: property?.privateSecurity,
+    Parking: property?.parking,
+    Furnished: property?.furnished,
+  };
 
   return (
     <div className="container mx-auto min-h-[800px] mb-14">
@@ -212,6 +217,7 @@ const PropertyDetails = () => {
           </form>
         </div>
       </div>
+      <Amenties property = {selectedAmenities} />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import PrivateRoute from './PrivateRoute';
 import Home from './components/Home/Home';
 import UpdateListing from './components/UpdateListings/UpdateListings';
 import EmiCalc from './components/Home/EmiCalc';
+import Amenties from './Amenties/Amenties';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
               <Route path="edit" element={<UpdateListing />} />
               <Route path="show" element={<ShowListings />} />
             </Route>
+              <Route path="/am" element={<Amenties />} />
+            
           </Routes>
         </AuthProvider>
       </BrowserRouter>
