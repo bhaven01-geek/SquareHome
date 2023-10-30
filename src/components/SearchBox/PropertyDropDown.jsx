@@ -3,8 +3,8 @@ import { RiHome5Line, RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { Menu } from '@headlessui/react';
 // import { HouseContext } from './HouseContext';
 
-const PropertyDropdown = () => {
-  const [selectedProperty, setSelectedProperty] = useState(null);
+const PropertyDropdown = ({selectedProperty , setSelectedProperty}) => {
+  // const [selectedProperty, setSelectedProperty] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
   
@@ -24,10 +24,9 @@ const PropertyDropdown = () => {
       >
         <RiHome5Line className='dropdown-icon-primary' />
         <div>
-          {/* <div className='text-[15px] font-medium leading-tight'>
-            {property}
-            Hello
-          </div> */}
+          <div className='text-[15px] font-medium leading-tight text-orange-800'>
+            {selectedProperty}
+          </div>
           <div className='text-[13px]'>Choose property type</div>
         </div>
         {isOpen ? (

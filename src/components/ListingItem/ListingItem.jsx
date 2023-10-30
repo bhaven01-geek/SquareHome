@@ -55,7 +55,7 @@ export default function ListingItem() {
     <>
       <Header />
       <div>
-        <Search />
+        <Search setPropertyData={setPropertyData} />
         <section className="property" id="property">
           <div className="container">
             <p className="section-subtitle">Properties</p>
