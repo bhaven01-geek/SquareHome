@@ -25,10 +25,12 @@ function Services() {
                 over 1 million+ homes for sale available on the website, we can
                 match you with a house you will want to call home.
               </p>
+              <Link to="/Listings">
               <a href="#" className="card-link">
                 <span>Find A Home</span>
                 <FaArrowRight />
               </a>
+              </Link>
             </div>
           </li>
           <li>
@@ -62,11 +64,12 @@ function Services() {
                 "Empower yourself with knowledge and make well-informed
                 decisions about your dream home with our EMI calculator. .{" "}
               </p>{" "}
-              <a href="#" className="card-link">
-              {/* <Link to='/emi'> */}
-                <span>Budget your way</span>
-                <FaArrowRight />                
-              </a>
+              <Link to="/emi">
+                <a href="#" className="card-link">
+                  <span>Budget your way</span>
+                  <FaArrowRight />
+                </a>
+              </Link>
             </div>
           </li>
         </ul>

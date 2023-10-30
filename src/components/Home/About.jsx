@@ -1,7 +1,7 @@
-import myImage1 from '../../assets/images/about-banner-11.jpg';
-import myImage2 from '../../assets/images/about-banner-2.jpg';
-import { FaLeaf, FaHome, FaWineGlass, FaHeart } from 'react-icons/fa';
-import './styles.css';
+import myImage1 from "../../assets/images/about-banner-11.jpg";
+import myImage2 from "../../assets/images/about-banner-2.jpg";
+import { FaLeaf, FaHome, FaWineGlass, FaHeart } from "react-icons/fa";
+import "./styles.css";
 
 export default function About() {
   return (
