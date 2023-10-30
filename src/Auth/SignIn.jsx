@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // } from '../redux/user/userSlice';
 // import OAuth from '../components/OAuth';
 
+import { GoogleProvider } from '../firebase.jsx';
 import { useAuth } from '../AuthContext/AuthContext';
 
 export default function SignIn() {
@@ -16,7 +17,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   // const dispatch = useDispatch();
 
-  const { login } = useAuth();
+  const { login  , signInGoogle} = useAuth();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -41,6 +42,15 @@ export default function SignIn() {
       console.log(error);
     }
   };
+
+  const GoogleLogin = async () => {
+    try {
+      await signInGoogle(GoogleProvider);
+      navigate("../app/create" , {replace:true});
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -75,7 +85,7 @@ export default function SignIn() {
           <hr class="border-gray-500" />
         </div>
 
-        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
+        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center" onClick={() => {GoogleLogin()}}>
           <img
             height="50"
             width="50"

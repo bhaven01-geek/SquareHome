@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // // import OAuth from '../components/OAuth';
 import { useAuth } from '../AuthContext/AuthContext';
+import { GoogleProvider } from '../firebase.jsx';
+
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -18,6 +20,9 @@ export default function SignUp() {
     });
     console.log('fj');
   };
+
+  const { signInGoogle } = useAuth();
+
 
   const handleSubmit = async (e) => {
     console.log(formData);
@@ -45,6 +50,18 @@ export default function SignUp() {
       console.log(error);
     }
   };
+
+
+  const GoogleLogin = async () => {
+    try {
+      await signInGoogle(GoogleProvider);
+      navigate("../app/create", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -86,7 +103,7 @@ export default function SignUp() {
           <hr class="border-gray-500" />
         </div>
 
-        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center">
+        <button class="bg-blue-700 text-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-center" onClick={GoogleLogin}>
           <img
             height="50"
             width="50"
